@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRAMEZERØ CREATIVE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #050508;
+  --deep: #0a0a10;
+  --surface: #111118;
+  --glass: rgba(255, 255, 255, 0.025);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-hover: rgba(255, 255, 255, 0.05);
+  --cream: #e8e4dc;
+  --warm: #c8c0b4;
+  --muted: #6b6770;
+  --dim: #3a3840;
+  --glow: #b8ff52;
+  --glow-rgb: 184, 255, 82;
+  --cyan: #52ffd8;
+  --cyan-rgb: 82, 255, 216;
+  --ice: #7ec8ff;
+  --ice-rgb: 126, 200, 255;
+  --magenta: #ff52c8;
+  --magenta-rgb: 255, 82, 200;
+  --rose: #ff5288;
+  --rose-rgb: 255, 82, 136;
+  --sans: 'Outfit', system-ui, sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--glow) var(--void);
+  font-size: 16px;
+}
+
+body {
+  background: var(--void);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(var(--glow-rgb), 0.25);
+  color: var(--cream);
+}
+
+/* ====== AMBIENT DEPTH FIELD ====== */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.08;
+  animation: drift 25s ease-in-out infinite;
+}
+
+.ambient-orb:nth-child(1) {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(var(--glow-rgb), 0.6), transparent 70%);
+  top: -15%; left: -10%;
+  animation-duration: 30s;
+}
+
+.ambient-orb:nth-child(2) {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(var(--cyan-rgb), 0.5), transparent 70%);
+  bottom: 5%; right: -15%;
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+
+.ambient-orb:nth-child(3) {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(var(--magenta-rgb), 0.3), transparent 70%);
+  top: 40%; left: 30%;
+  animation-duration: 35s;
+  animation-delay: -15s;
+}
+
+.ambient-orb:nth-child(4) {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(var(--cyan-rgb), 0.25), transparent 70%);
+  top: 70%; right: 20%;
+  animation-duration: 28s;
+  animation-delay: -5s;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(40px, -60px) scale(1.08); }
+  50% { transform: translate(-30px, 40px) scale(0.92); }
+  75% { transform: translate(50px, 25px) scale(1.04); }
+}
+
+/* Grain overlay */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ====== SVG FILTERS FOR GLASS EFFECTS ====== */
+.svg-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* ====== NAV ====== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(30px) saturate(1.3);
+  -webkit-backdrop-filter: blur(30px) saturate(1.3);
+  background: rgba(5, 5, 8, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-brand {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-brand .oslash {
+  color: var(--glow);
+  text-shadow: 0 0 20px rgba(var(--glow-rgb), 0.5);
+  transition: text-shadow 0.3s ease;
+}
+
+.nav-brand:hover .oslash {
+  text-shadow: 0 0 30px rgba(var(--glow-rgb), 0.8), 0 0 60px rgba(var(--glow-rgb), 0.3);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.4s ease;
+  position: relative;
+}
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--glow);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-links a:hover { color: var(--cream); }
+.nav-links a:hover::before { transform: scaleX(1); transform-origin: left; }
+
+/* ====== MAIN CONTENT ====== */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ====== HERO ====== */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 5vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-right: 2rem;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--glow);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  animation: slideIn 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--glow);
+  flex-shrink: 0;
+}
+
+.hero h1 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(3.2rem, 5.5vw, 6rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: slideIn 0.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero h1 .line { display: block; }
+
+.hero h1 .thin {
+  font-weight: 200;
+  color: var(--warm);
+}
+
+.hero h1 .glow-text {
+  color: var(--glow);
+  text-shadow: 0 0 40px rgba(var(--glow-rgb), 0.3);
+}
+
+.hero-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--warm);
+  max-width: 480px;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: slideIn 0.8s 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.25rem;
+  opacity: 0;
+  animation: slideIn 0.8s 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ====== ORBITAL GLASS HERO VISUAL ====== */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  grid-row: 1;
+  grid-column: 2;
+  perspective: 900px;
+}
+
+.orrery {
+  width: 460px;
+  height: 460px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transform: rotateX(12deg) rotateY(-5deg);
+}
+
+/* ====== THE Ø : SUN / NUCLEUS ====== */
+.oslash-core {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  z-index: 10;
+  transform-style: preserve-3d;
+}
+
+/* The ring of the Ø: luminous, 3D, bold green */
+.oslash-ring-main {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid rgba(var(--glow-rgb), 0.7);
+  box-shadow:
+    /* inner glow */
+    inset 0 0 30px rgba(var(--glow-rgb), 0.2),
+    inset 0 0 60px rgba(var(--glow-rgb), 0.1),
+    /* outer glow */
+    0 0 15px rgba(var(--glow-rgb), 0.4),
+    0 0 40px rgba(var(--glow-rgb), 0.2),
+    0 0 80px rgba(var(--glow-rgb), 0.1),
+    0 0 150px rgba(var(--glow-rgb), 0.05);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(var(--glow-rgb), 0.06) 0%,
+    rgba(5, 5, 8, 0.4) 50%,
+    rgba(5, 5, 8, 0.8) 100%
+  );
+  animation: corePulse 4s ease-in-out infinite;
+}
+
+/* Specular on the ring */
+.oslash-ring-main::after {
+  content: '';
+  position: absolute;
+  top: 5%;
+  left: 15%;
+  width: 40%;
+  height: 20%;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.25) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(4px);
+}
+
+/* Inner glow core: the "light source" at center */
+.oslash-inner-glow {
+  position: absolute;
+  inset: 25%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--glow-rgb), 0.25) 0%,
+    rgba(var(--glow-rgb), 0.08) 50%,
+    transparent 100%
+  );
+  animation: innerPulse 3s ease-in-out infinite alternate;
+}
+
+/* THE SLASH: bright beam cutting through with depth */
+.oslash-slash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 0;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: 15;
+}
+
+/* Main slash line */
+.oslash-slash::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--glow-rgb), 0.3) 15%,
+    rgba(var(--glow-rgb), 0.8) 35%,
+    rgba(255, 255, 255, 0.95) 48%,
+    rgba(255, 255, 255, 0.95) 52%,
+    rgba(var(--glow-rgb), 0.8) 65%,
+    rgba(var(--glow-rgb), 0.3) 85%,
+    transparent 100%
+  );
+  border-radius: 4px;
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.5),
+    0 0 15px rgba(var(--glow-rgb), 0.5),
+    0 0 40px rgba(var(--glow-rgb), 0.2);
+}
+
+/* Depth shadow of slash: creates the 3D cut effect */
+.oslash-slash::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2%;
+  right: 2%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.5) 20%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 80%,
+    transparent 100%
+  );
+  filter: blur(3px);
+  border-radius: 4px;
+}
+
+/* Slash-ring intersection glow removed: looked like stuck molecules */
+
+/* ====== ORBITAL RINGS: tilted ellipses in 3D ====== */
+.orbital-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--glow-rgb), 0.12);
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.orbital-ring-1 {
+  width: 300px;
+  height: 300px;
+  margin-top: -150px;
+  margin-left: -150px;
+  transform: rotateX(65deg) rotateZ(15deg);
+  border-color: rgba(var(--glow-rgb), 0.15);
+  animation: ringPulse 6s ease-in-out infinite;
+}
+
+.orbital-ring-2 {
+  width: 360px;
+  height: 360px;
+  margin-top: -180px;
+  margin-left: -180px;
+  transform: rotateX(72deg) rotateZ(-25deg);
+  border-color: rgba(var(--glow-rgb), 0.1);
+  animation: ringPulse 6s ease-in-out infinite 2s;
+}
+
+.orbital-ring-3 {
+  width: 420px;
+  height: 420px;
+  margin-top: -210px;
+  margin-left: -210px;
+  transform: rotateX(58deg) rotateZ(40deg);
+  border-color: rgba(var(--glow-rgb), 0.07);
+  animation: ringPulse 6s ease-in-out infinite 4s;
+}
+
+/* ====== PLANET LAYER: 2D overlay, no 3D distortion ====== */
+.planet-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  transition: box-shadow 0.3s;
+}
+
+.planet-1 {
+  width: 22px;
+  height: 22px;
+  background: radial-gradient(
+    ellipse at 35% 30%,
+    rgba(var(--ice-rgb), 0.95) 0%,
+    rgba(var(--ice-rgb), 0.5) 50%,
+    rgba(var(--ice-rgb), 0.2) 100%
+  );
+  box-shadow:
+    0 0 8px rgba(var(--ice-rgb), 0.6),
+    0 0 20px rgba(var(--ice-rgb), 0.3),
+    0 0 40px rgba(var(--ice-rgb), 0.1);
+}
+
+.planet-1::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 35%;
+  height: 25%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.7), transparent);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.planet-2 {
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(
+    ellipse at 35% 30%,
+    rgba(var(--magenta-rgb), 0.85) 0%,
+    rgba(var(--magenta-rgb), 0.4) 50%,
+    rgba(var(--magenta-rgb), 0.15) 100%
+  );
+  box-shadow:
+    0 0 6px rgba(var(--magenta-rgb), 0.5),
+    0 0 15px rgba(var(--magenta-rgb), 0.25),
+    0 0 35px rgba(var(--magenta-rgb), 0.08);
+}
+
+.planet-2::after {
+  content: '';
+  position: absolute;
+  top: 12%;
+  left: 18%;
+  width: 38%;
+  height: 28%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.5), transparent);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.planet-3 {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(
+    ellipse at 35% 30%,
+    rgba(255, 180, 60, 0.9) 0%,
+    rgba(255, 150, 30, 0.5) 50%,
+    rgba(255, 120, 20, 0.2) 100%
+  );
+  box-shadow:
+    0 0 5px rgba(255, 180, 60, 0.5),
+    0 0 12px rgba(255, 150, 30, 0.25),
+    0 0 30px rgba(255, 120, 20, 0.08);
+}
+
+.planet-3::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 40%;
+  height: 30%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.5), transparent);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+/* Ground glow beneath */
+.orrery-glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 60px;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(var(--glow-rgb), 0.12) 0%,
+    rgba(var(--glow-rgb), 0.04) 50%,
+    transparent 80%
+  );
+  filter: blur(20px);
+  z-index: 0;
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* ====== KEYFRAMES ====== */
+@keyframes corePulse {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 30px rgba(var(--glow-rgb), 0.2),
+      inset 0 0 60px rgba(var(--glow-rgb), 0.1),
+      0 0 15px rgba(var(--glow-rgb), 0.4),
+      0 0 40px rgba(var(--glow-rgb), 0.2),
+      0 0 80px rgba(var(--glow-rgb), 0.1),
+      0 0 150px rgba(var(--glow-rgb), 0.05);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 35px rgba(var(--glow-rgb), 0.25),
+      inset 0 0 70px rgba(var(--glow-rgb), 0.12),
+      0 0 20px rgba(var(--glow-rgb), 0.5),
+      0 0 50px rgba(var(--glow-rgb), 0.25),
+      0 0 100px rgba(var(--glow-rgb), 0.12),
+      0 0 180px rgba(var(--glow-rgb), 0.06);
+  }
+}
+
+@keyframes innerPulse {
+  from { opacity: 0.6; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ====== SCROLL INDICATOR ====== */
+.scroll-cue {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 5vw;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  animation: slideIn 0.8s 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.scroll-bar {
+  width: 30px; height: 2px;
+  background: var(--dim);
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glow);
+  transform: translateX(-100%);
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* ====== BUTTONS ====== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.9rem 2rem;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-glow {
+  background: var(--glow);
+  color: var(--void);
+  font-weight: 700;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-glow:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(var(--glow-rgb), 0.3); }
+.btn-glow:hover::before { transform: translateX(100%); }
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--cream);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(var(--glow-rgb), 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-arrow {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+/* ====== SECTION STRUCTURE ====== */
+.section {
+  padding: 4.5rem 5vw;
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--glow);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: rgba(var(--glow-rgb), 0.4);
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.04) 80%, transparent);
+  margin: 0;
+}
+
+.section-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.section-title .thin {
+  font-weight: 200;
+  color: var(--warm);
+}
+
+/* ====== FEATURED: SEASONS ====== */
+.featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.featured-text h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 4vw, 4.5rem);
+  line-height: 1.05;
+  margin-bottom: 2rem;
+}
+
+.featured-text h2 .accent { color: var(--glow); }
+
+.featured-meta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.meta-label {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.meta-value {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--cream);
+  font-weight: 400;
+}
+
+.featured-body {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--warm);
+  margin-bottom: 2.5rem;
+}
+
+/* Album art as liquid glass */
+.featured-visual {
+  position: relative;
+  aspect-ratio: 1;
+  max-width: 460px;
+  justify-self: center;
+}
+
+.album-glass {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(
+    160deg,
+    rgba(var(--cyan-rgb), 0.04) 0%,
+    rgba(var(--glow-rgb), 0.02) 40%,
+    rgba(var(--magenta-rgb), 0.03) 70%,
+    rgba(5, 5, 8, 0.8) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(30px) saturate(1.4);
+  -webkit-backdrop-filter: blur(30px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(var(--cyan-rgb), 0.04),
+    0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Refraction sweep */
+.album-glass::before {
+  content: '';
+  position: absolute;
+  inset: -80%;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    transparent 0deg,
+    rgba(var(--glow-rgb), 0.04) 80deg,
+    transparent 160deg,
+    rgba(var(--cyan-rgb), 0.03) 240deg,
+    transparent 360deg
+  );
+  animation: refract 15s linear infinite;
+}
+
+/* Specular */
+.album-glass::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 100%
+  );
+  border-radius: 16px 16px 0 0;
+}
+
+.album-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.album-season-label {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--glow);
+  opacity: 0.7;
+}
+
+.album-title {
+  font-family: var(--sans);
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  background: linear-gradient(135deg, var(--cream), var(--warm));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.album-subtitle {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+.album-tracks {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--dim);
+  letter-spacing: 0.15em;
+}
+
+/* ====== PILLARS (4 now) ====== */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.pillar-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2.25rem 1.75rem;
+  cursor: default;
+  border-radius: 12px;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.025) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 0 transparent;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Iridescent top edge */
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--glow-rgb), 0), transparent);
+  transition: background 0.5s ease;
+}
+
+/* Refraction glow on hover */
+.pillar-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    transparent 0deg,
+    rgba(var(--cyan-rgb), 0.03) 90deg,
+    transparent 180deg,
+    rgba(var(--glow-rgb), 0.02) 270deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: refract 20s linear infinite;
+}
+
+.pillar-card:hover {
+  border-color: rgba(var(--glow-rgb), 0.12);
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 30px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(var(--cyan-rgb), 0.04);
+}
+
+.pillar-card:hover::before {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(var(--cyan-rgb), 0.3) 20%,
+    rgba(var(--glow-rgb), 0.4) 50%,
+    rgba(var(--magenta-rgb), 0.3) 80%,
+    transparent
+  );
+}
+
+.pillar-card:hover::after {
+  opacity: 1;
+}
+
+.pillar-number {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--glow);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.25rem;
+  opacity: 0.6;
+  position: relative;
+  z-index: 2;
+}
+
+.pillar-card h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+  position: relative;
+  z-index: 2;
+}
+
+.pillar-card p {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--warm);
+  position: relative;
+  z-index: 2;
+}
+
+/* ====== "THE METHOD" SECTION ====== */
+.method {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.method-visual {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animated liquid glass diagram */
+.method-glass {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.method-blob {
+  position: absolute;
+  border-radius: 40% 60% 55% 45% / 55% 40% 60% 45%;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  animation: morphFloat 15s ease-in-out infinite;
+}
+
+.method-blob-truth {
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, rgba(var(--glow-rgb), 0.08), rgba(var(--cyan-rgb), 0.04));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 60px rgba(var(--glow-rgb), 0.06);
+  top: 10%;
+  left: 10%;
+  z-index: 2;
+}
+
+.method-blob-system {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(225deg, rgba(var(--cyan-rgb), 0.08), rgba(var(--magenta-rgb), 0.04));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 60px rgba(var(--cyan-rgb), 0.06);
+  bottom: 5%;
+  right: 5%;
+  z-index: 1;
+  animation-delay: -5s;
+  border-radius: 55% 45% 40% 60% / 45% 55% 45% 55%;
+}
+
+/* The overlap zone */
+.method-blob-overlap {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(var(--glow-rgb), 0.1), rgba(var(--cyan-rgb), 0.06));
+  box-shadow: 0 0 40px rgba(var(--glow-rgb), 0.08), 0 0 80px rgba(var(--cyan-rgb), 0.04);
+  top: 35%;
+  left: 35%;
+  z-index: 3;
+  animation-delay: -10s;
+  border-radius: 50%;
+}
+
+.method-blob-label {
+  position: absolute;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--glow);
+  opacity: 0.6;
+}
+
+.method-blob-label.truth-label { top: 22%; left: 18%; z-index: 4; }
+.method-blob-label.system-label { bottom: 18%; right: 14%; z-index: 4; }
+.method-blob-label.overlap-label { top: 43%; left: 40%; z-index: 4; color: var(--cyan); }
+
+.method-text h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.method-text .quote {
+  font-family: var(--sans);
+  font-weight: 200;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--cream);
+  padding-left: 1.5rem;
+  border-left: 2px solid rgba(var(--glow-rgb), 0.3);
+  margin-bottom: 1.5rem;
+}
+
+.method-text p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--warm);
+  margin-bottom: 1rem;
+}
+
+/* ====== BLOG PREVIEW ====== */
+.blog-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.blog-card {
+  border-radius: 12px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Iridescent edge on hover */
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--glow-rgb), 0), transparent);
+  transition: background 0.5s ease;
+}
+
+.blog-card:hover {
+  border-color: rgba(var(--glow-rgb), 0.12);
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.blog-card:hover::before {
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(var(--cyan-rgb), 0.3) 30%,
+    rgba(var(--glow-rgb), 0.4) 60%,
+    transparent
+  );
+}
+
+.blog-card-tag {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--glow);
+  margin-bottom: 1.25rem;
+}
+
+.blog-card h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.blog-card:hover h3 { color: var(--glow); }
+.blog-card-featured h3 { font-size: 2.2rem; }
+
+.blog-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--warm);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.blog-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.read-more {
+  color: var(--glow);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.3s ease;
+}
+
+.blog-card:hover .read-more { gap: 0.75rem; }
+
+.blog-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.blog-card-small h3 { font-size: 1.3rem; }
+
+/* ====== NEWSLETTER ====== */
+.newsletter {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  margin-bottom: 1rem;
+}
+
+.newsletter p {
+  color: var(--warm);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0;
+  max-width: 460px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.newsletter-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border: none;
+  padding: 0.9rem 1.25rem;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 300;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.newsletter-input::placeholder { color: var(--dim); }
+.newsletter-input:focus { background: rgba(255, 255, 255, 0.04); }
+
+.newsletter-submit {
+  background: var(--glow);
+  color: var(--void);
+  border: none;
+  padding: 0.9rem 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.newsletter-submit:hover {
+  background: rgba(var(--glow-rgb), 0.85);
+}
+
+/* ====== FOOTER ====== */
+footer {
+  padding: 4rem 5vw 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.footer-brand {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.footer-brand .oslash { color: var(--glow); }
+
+.footer-tagline {
+  font-family: var(--sans);
+  font-weight: 200;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--warm);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.35rem 0;
+  transition: color 0.3s ease;
+}
+
+.footer-col a:hover { color: var(--glow); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+}
+
+/* ====== ANIMATIONS ====== */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 8rem; padding-bottom: 4rem; }
+  .hero-content { padding-right: 0; }
+  .hero-visual { height: 50vh; }
+  .orrery { width: 360px; height: 360px; }
+  .oslash-core { width: 130px; height: 130px; }
+  .orrery-glow { width: 240px; }
+  .orbital-ring-1 { width: 240px; height: 240px; margin-top: -120px; margin-left: -120px; }
+  .orbital-ring-2 { width: 290px; height: 290px; margin-top: -145px; margin-left: -145px; }
+  .orbital-ring-3 { width: 340px; height: 340px; margin-top: -170px; margin-left: -170px; }
+  .featured { grid-template-columns: 1fr; }
+  .featured-visual { max-width: 350px; margin: 0 auto; }
+  .pillars-grid { grid-template-columns: 1fr 1fr; }
+  .method { grid-template-columns: 1fr; }
+  .method-visual { height: 300px; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+
+@media (max-width: 640px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.55rem; }
+  .section { padding: 3rem 1.25rem; }
+  .hero { padding: 6rem 1.25rem 3rem; }
+  .hero h1 { font-size: 2.8rem; }
+  .hero-actions { flex-direction: column; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .newsletter-form { flex-direction: column; border-radius: 8px; }
+  .newsletter-input { border-radius: 8px 8px 0 0; }
+  .newsletter-submit { border-radius: 0 0 8px 8px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .orrery { width: 260px; height: 260px; }
+  .oslash-core { width: 100px; height: 100px; }
+  .orrery-glow { width: 180px; }
+  .orbital-ring-1 { width: 180px; height: 180px; margin-top: -90px; margin-left: -90px; }
+  .orbital-ring-2 { width: 220px; height: 220px; margin-top: -110px; margin-left: -110px; }
+  .orbital-ring-3 { width: 250px; height: 250px; margin-top: -125px; margin-left: -125px; }
+  .planet-1 { width: 16px; height: 16px; }
+  .planet-2 { width: 12px; height: 12px; }
+  .planet-3 { width: 9px; height: 9px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Ambient depth field -->
+<div class="ambient">
+  <div class="ambient-orb"></div>
+  <div class="ambient-orb"></div>
+  <div class="ambient-orb"></div>
+  <div class="ambient-orb"></div>
+</div>
+<div class="grain"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-brand">FRAMEZER<span class="oslash">&Oslash;</span>&nbsp; CREATIVE</div>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#method">Method</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Truth Extraction + System Building</div>
+      <h1>
+        <span class="line">We extract</span>
+        <span class="line"><span class="thin">what's real</span></span>
+        <span class="line">and build <span class="glow-text">living</span></span>
+        <span class="line"><span class="glow-text">systems</span> <span class="thin">around it.</span></span>
+      </h1>
+      <p class="hero-body">
+        A creative operating system. We sit with you, create conditions for honesty, extract the truth, and build systems that authentically represent you. For ourselves, that's SEAS&Oslash;NS. For you, it's a living digital extension of your business.
+      </p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-glow">See the work <span class="btn-arrow">&rarr;</span></a>
+        <a href="#method" class="btn btn-glass">The method <span class="btn-arrow">&rarr;</span></a>
+      </div>
+    </div>
+
+    <!-- Orbital Orrery Ø -->
+    <div class="hero-visual">
+      <div class="orrery" id="glassScene">
+        <!-- Ground glow beneath -->
+        <div class="orrery-glow"></div>
+
+        <!-- Tilted orbital rings -->
+        <div class="orbital-ring orbital-ring-1"></div>
+        <div class="orbital-ring orbital-ring-2"></div>
+        <div class="orbital-ring orbital-ring-3"></div>
+
+        <!-- The Ø: sun / nucleus -->
+        <div class="oslash-core">
+          <div class="oslash-ring-main"></div>
+          <div class="oslash-inner-glow"></div>
+          <div class="oslash-slash"></div>
+        </div>
+      </div>
+
+      <!-- Planets: separate 2D layer, no 3D distortion -->
+      <div class="planet-layer" id="planetLayer">
+        <div class="planet planet-1"></div>
+        <div class="planet planet-2"></div>
+        <div class="planet planet-3"></div>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <div class="scroll-bar"></div>
+      Scroll to explore
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ====== FEATURED PROJECT: SEASONS ====== -->
+  <section class="section" id="work">
+    <div class="featured">
+      <div class="featured-text reveal">
+        <div class="section-label">Featured Project</div>
+        <h2>SEAS<span class="accent">&Oslash;</span>NS<br><span style="font-weight:200; color: var(--warm);">Spring</span></h2>
+        <div class="featured-meta">
+          <div class="meta-item">
+            <span class="meta-label">Format</span>
+            <span class="meta-value">9 Episodes</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Status</span>
+            <span class="meta-value">Streaming Now</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Year</span>
+            <span class="meta-value">2026</span>
+          </div>
+        </div>
+        <p class="featured-body">
+          A four-album duet reimagined from 57 songs written across two years. Spring is the first chapter: nine episodes about awakening, attraction, and the courage to stay. Twenty years in the making. The creative work IS the methodology demonstrated.
+        </p>
+        <a href="https://seasons.band" class="btn btn-glass" target="_blank">Listen on seasons.band <span class="btn-arrow">&rarr;</span></a>
+      </div>
+
+      <div class="featured-visual reveal reveal-delay-2">
+        <div class="album-glass">
+          <div class="album-content">
+            <div class="album-season-label">Album I of IV</div>
+            <div class="album-title">SPRING</div>
+            <div class="album-subtitle">SEAS&Oslash;NS</div>
+            <div class="album-tracks">9 TRACKS &middot; 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ====== THE METHOD ====== -->
+  <section class="section" id="method">
+    <div class="method">
+      <div class="method-visual reveal">
+        <div class="method-glass">
+          <div class="method-blob method-blob-truth"></div>
+          <div class="method-blob method-blob-system"></div>
+          <div class="method-blob method-blob-overlap"></div>
+          <span class="method-blob-label truth-label">Truth</span>
+          <span class="method-blob-label system-label">Systems</span>
+          <span class="method-blob-label overlap-label">You</span>
+        </div>
+      </div>
+      <div class="method-text reveal reveal-delay-1">
+        <div class="section-label">The Method</div>
+        <h2>The tools are AI.<br><span class="thin">The method is human.</span></h2>
+        <div class="quote">
+          "I extract what's real about you and build living systems around it."
+        </div>
+        <p>
+          It starts with sitting together. Creating conditions for honesty. Getting to the hard truths about who you are, what your business actually does, and what matters. From that raw material, the vision gets built. The systems get built. And they work because they're built on something real.
+        </p>
+        <p>
+          The result: a digital twin that sounds like you. An automated content system that speaks in your voice. A brand operating system that runs while you do your actual work. The results compound over time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ====== PILLARS ====== -->
+  <section class="section" id="about">
+    <div class="section-label reveal">What Lives Here</div>
+    <h2 class="section-title reveal">Four pillars. <span class="thin">One practice.</span></h2>
+    <p class="reveal" style="color: var(--warm); max-width: 600px; line-height: 1.7; margin-bottom: 1rem;">
+      The creative work and the consulting are the same thing: truth extraction + system building. One serves art. One serves business. Both start with honesty.
+    </p>
+
+    <div class="pillars-grid">
+      <div class="pillar-card reveal reveal-delay-1">
+        <div class="pillar-number">01</div>
+        <h3>Creative Operating Systems</h3>
+        <p>The core offering. Extracting truth and building living systems around it. For ourselves or for clients. Digital twins, automated content, brand OS. The studio itself is the flagship case study.</p>
+      </div>
+      <div class="pillar-card reveal reveal-delay-2">
+        <div class="pillar-number">02</div>
+        <h3>Vertical Cinema</h3>
+        <p>Not "AI filmmaking." Conceptual, scroll-stopping, full creative universes. Thinking in worlds. Telling stories in formats designed for how people actually consume content now. SEAS&Oslash;NS is the proof.</p>
+      </div>
+      <div class="pillar-card reveal reveal-delay-3">
+        <div class="pillar-number">03</div>
+        <h3>The AuDHD Command Center</h3>
+        <p>Late diagnosis at 49. High-level creative direction from a home command center. The pattern recognition, the deep listening, the ability to hold someone's entire story. The neurotype is the credibility.</p>
+      </div>
+      <div class="pillar-card reveal reveal-delay-4">
+        <div class="pillar-number">04</div>
+        <h3>Intelligence Is Interconnected</h3>
+        <p>Intelligence isn't just a human thing. It's an everything thing. How we tap into that intelligence and stop being afraid of the future. Present in everything, never preachy.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ====== BLOG ====== -->
+  <section class="section" id="blog">
+    <div class="section-label reveal">From the Studio</div>
+    <h2 class="section-title reveal">Latest writing</h2>
+
+    <div class="blog-grid">
+      <div class="blog-card blog-card-featured reveal">
+        <div class="blog-card-tag">Manifesto</div>
+        <h3>Frame Zero: A Manifesto</h3>
+        <p>There is no future. There never was. This is who FRAMEZER&Oslash; CREATIVE is, what we believe, and why we built a studio around truth extraction and living systems. The declaration.</p>
+        <div class="blog-card-footer">
+          <span>March 21, 2026 &middot; 10 min read</span>
+          <span class="read-more">Read <span class="btn-arrow">&rarr;</span></span>
+        </div>
+      </div>
+
+      <div class="blog-stack">
+        <div class="blog-card blog-card-small reveal reveal-delay-1">
+          <div class="blog-card-tag">Creative</div>
+          <h3>Twenty Years to Frame Zero: The SEAS&Oslash;NS Origin Story</h3>
+          <div class="blog-card-footer">
+            <span>March 20, 2026</span>
+            <span class="read-more">Read <span class="btn-arrow">&rarr;</span></span>
+          </div>
+        </div>
+        <div class="blog-card blog-card-small reveal reveal-delay-2">
+          <div class="blog-card-tag">AuDHD</div>
+          <h3>Diagnosed at 49: What Late AuDHD Diagnosis Feels Like</h3>
+          <div class="blog-card-footer">
+            <span>Coming next</span>
+            <span class="read-more">Read <span class="btn-arrow">&rarr;</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ====== NEWSLETTER ====== -->
+  <section class="section" id="connect">
+    <div class="newsletter reveal">
+      <div class="section-label" style="justify-content: center;">Stay Connected</div>
+      <h2>Follow along <span class="thin">if you're curious.</span></h2>
+      <p>Occasional dispatches from the studio. New work, honest reflections, and whatever's happening at the intersection of creativity, technology, and the human experience.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault();">
+        <input type="email" class="newsletter-input" placeholder="your@email.com" />
+        <button type="submit" class="newsletter-submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">FRAMEZER<span class="oslash">&Oslash;</span>&nbsp; CREATIVE</div>
+      <div class="footer-tagline">Truth extraction + system building.<br>The creative work IS the case study.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Studio</h4>
+      <a href="#work">Work</a>
+      <a href="#method">Method</a>
+      <a href="#blog">Blog</a>
+      <a href="#connect">Connect</a>
+    </div>
+    <div class="footer-col">
+      <h4>Projects</h4>
+      <a href="https://seasons.band" target="_blank">SEAS&Oslash;NS</a>
+      <a href="#">Vertical Cinema</a>
+      <a href="#">Client Systems</a>
+    </div>
+    <div class="footer-col">
+      <h4>Social</h4>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 FRAMEZER&Oslash; CREATIVE. Vancouver, BC.</span>
+    <span>Built on truth. Powered by systems.</span>
+  </div>
+</footer>
+
+<!-- Scroll Reveal + Interactive Effects -->
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// Nav hide on scroll
+let lastScroll = 0;
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  const current = window.scrollY;
+  if (current > lastScroll && current > 100) {
+    nav.style.transform = 'translateY(-100%)';
+  } else {
+    nav.style.transform = 'translateY(0)';
+  }
+  lastScroll = current;
+}, { passive: true });
+
+// Interactive 3D scene + JS-driven planet orbits
+const orreryScene = document.getElementById('glassScene');
+const hero = document.querySelector('.hero');
+const heroVisual = document.querySelector('.hero-visual');
+const orreryGlow = document.querySelector('.orrery-glow');
+
+let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
+
+// Base rotation values from CSS
+const baseRotX = 12;
+const baseRotY = -5;
+
+// Orbital config: each planet's path parameters
+const orbits = [
+  { el: document.querySelector('.planet-1'), radius: 150, tiltX: 65, tiltZ: 15, period: 14, phase: 0 },
+  { el: document.querySelector('.planet-2'), radius: 180, tiltX: 72, tiltZ: -25, period: 20, phase: 2.1 },
+  { el: document.querySelector('.planet-3'), radius: 210, tiltX: 58, tiltZ: 40, period: 28, phase: 4.4 },
+];
+
+// Deg to rad
+const RAD = Math.PI / 180;
+
+function projectOrbit(orbit, time) {
+  const angle = (2 * Math.PI / orbit.period) * time + orbit.phase;
+
+  // Point on a unit circle
+  let x = orbit.radius * Math.cos(angle);
+  let y = orbit.radius * Math.sin(angle);
+  let z = 0;
+
+  // Tilt around X
+  const cx = Math.cos(orbit.tiltX * RAD);
+  const sx = Math.sin(orbit.tiltX * RAD);
+  const y1 = y * cx - z * sx;
+  const z1 = y * sx + z * cx;
+
+  // Rotate around Z
+  const cz = Math.cos(orbit.tiltZ * RAD);
+  const sz = Math.sin(orbit.tiltZ * RAD);
+  const x2 = x * cz - y1 * sz;
+  const y2 = x * sz + y1 * cz;
+
+  // Apply scene base tilt (rotateX 12deg)
+  const csx = Math.cos(baseRotX * RAD);
+  const ssx = Math.sin(baseRotX * RAD);
+  const y3 = y2 * csx - z1 * ssx;
+  const z3 = y2 * ssx + z1 * csx;
+
+  // Apply scene base rotateY (-5deg)
+  const csy = Math.cos(baseRotY * RAD);
+  const ssy = Math.sin(baseRotY * RAD);
+  const x3 = x2 * csy + z3 * ssy;
+
+  return { x: x3, y: y3, z: z3 };
+}
+
+// Mouse interaction
+if (window.matchMedia('(pointer: fine)').matches) {
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    mouseX = (e.clientX - rect.left) / rect.width - 0.5;
+    mouseY = (e.clientY - rect.top) / rect.height - 0.5;
+  });
+  hero.addEventListener('mouseleave', () => { mouseX = 0; mouseY = 0; });
+}
+
+let startTime = null;
+
+function animate(timestamp) {
+  if (!startTime) startTime = timestamp;
+  const time = (timestamp - startTime) / 1000;
+
+  // Smooth mouse interpolation
+  currentX += (mouseX - currentX) * 0.04;
+  currentY += (mouseY - currentY) * 0.04;
+
+  // 3D tilt on the orrery rings/core
+  const rotY = baseRotY + currentX * 20;
+  const rotX = baseRotX + currentY * -12;
+  orreryScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+  // Shift ground glow
+  if (orreryGlow) {
+    orreryGlow.style.transform = `translateX(calc(-50% + ${currentX * 30}px))`;
+  }
+
+  // Position each planet in 2D screen space
+  const layerRect = heroVisual;
+  orbits.forEach(orbit => {
+    const pos = projectOrbit(orbit, time);
+
+    // Subtle depth scaling: closer = slightly bigger
+    const depthScale = 1 + pos.z / 600;
+    const clampedScale = Math.max(0.6, Math.min(1.4, depthScale));
+
+    // Subtle opacity shift with depth
+    const depthOpacity = 0.5 + 0.5 * ((pos.z + 250) / 500);
+    const clampedOpacity = Math.max(0.35, Math.min(1, depthOpacity));
+
+    // Center of the orrery in the hero-visual
+    orbit.el.style.left = `calc(50% + ${pos.x}px)`;
+    orbit.el.style.top = `calc(50% + ${pos.y}px)`;
+    orbit.el.style.transform = `translate(-50%, -50%) scale(${clampedScale})`;
+    orbit.el.style.opacity = clampedOpacity;
+
+    // Z-index: in front of core when closer, behind when further
+    orbit.el.style.zIndex = pos.z > 0 ? 20 : 5;
+  });
+
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+</script>
+
+</body>
+</html>
