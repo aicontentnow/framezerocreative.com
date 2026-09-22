@@ -981,18 +981,7 @@
                 <h1>TRUTH EXTRACTION<br><span class="hero-highlight">+ SYSTEM BUILDING</span></h1>
                 <p>We extract what's real and build living systems around it.</p>
                 <div class="hero-ctas">
-                    <button class="btn btn-primary hero-cta-primary">Start a conversation</button>
                     <a href="#work" class="btn btn-ghost">See the work</a>
-                </div>
-            </div>
-            <div class="featured-project-teaser">
-                <div class="project-card-small">
-                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop" alt="SEASØNS Spring" loading="lazy">
-                    <div class="project-card-small-content">
-                        <div class="project-label">ALBUM I OF IV</div>
-                        <h3>SEASØNS</h3>
-                        <p style="margin: 0; font-size: 0.85rem;">Spring collection coming soon</p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -1039,26 +1028,10 @@
             </div>
         </section>
 
-        <!-- Featured Project: SEASØNS -->
+        <!-- Selected work -->
         <section id="work" style="margin-top: 5rem;">
-            <h2 style="text-align: center; margin-bottom: 3rem;">Featured</h2>
-            <div class="featured-project">
-                <div class="project-image-wrapper">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=600&fit=crop" alt="SEASØNS Spring Album Cover" loading="lazy">
-                    </div>
-                </div>
-                <div class="project-content">
-                    <div class="project-meta">
-                        <span class="project-tag">MUSIC + IDENTITY</span>
-                        <span class="project-tag">BRAND SYSTEM</span>
-                    </div>
-                    <h2>SEASØNS</h2>
-                    <p class="project-description">A complete brand identity and living system for a four-part musical collection. Each album arrives with its own visual identity, ecosystem, and narrative layer. Not just a music release. A world unto itself.</p>
-                    <p style="color: var(--green); font-family: 'Space Mono', monospace; font-size: 0.85rem; letter-spacing: 0.05em;">Album I of IV / Spring</p>
-                    <a href="https://seasons.band" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit SEASØNS</a>
-                </div>
-            </div>
+            <h2 style="text-align: center; margin-bottom: 3rem;">Selected work</h2>
+            <p style="text-align: center; color: var(--muted);">[PLACEHOLDER: selected work goes here]</p>
         </section>
 
         <!-- Blog Section -->
@@ -1077,12 +1050,6 @@
                     <p>How a decade of listening, building, and learning led to a singular approach. The short version of a long practice.</p>
                     <div class="blog-date">February 2026</div>
                 </div>
-                <div class="blog-card fade-in">
-                    <div class="blog-tag">Personal</div>
-                    <h3>Diagnosed at 49</h3>
-                    <p>What getting clarity at midlife taught us about business, identity, and the systems that actually matter. Raw. Real. Relevant.</p>
-                    <div class="blog-date">January 2026</div>
-                </div>
             </div>
         </section>
 
@@ -1091,10 +1058,7 @@
             <div class="newsletter">
                 <h2>Follow the Signal</h2>
                 <p>New essays, process notes, and thinking on extraction and systems. Sent occasionally.</p>
-                <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-                    <input type="email" placeholder="Your email" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
+                <p><a href="mailto:hello@framezerocreative.com" class="btn btn-primary">hello@framezerocreative.com</a></p>
             </div>
         </section>
     </main>
@@ -1297,14 +1261,6 @@
             lastScrollY = scrollY;
         }, { passive: true });
         
-        // ===== NEWSLETTER FORM =====
-        function handleNewsletterSubmit(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('input[type="email"]').value;
-            // Simple form handling
-            alert(`Thanks for subscribing with ${email}. We'll be in touch soon.`);
-            event.target.reset();
-        }
         
         // ===== SMOOTH SCROLL FOR NAV LINKS =====
         document.querySelectorAll('nav a').forEach(link => {
@@ -1320,15 +1276,7 @@
             });
         });
         
-        // ===== CTA BUTTONS =====
-        document.querySelector('.hero-cta-primary').addEventListener('click', () => {
-            // Scroll to contact section
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        });
         
-        document.querySelector('.project-card-small').addEventListener('click', () => {
-            window.open('https://seasons.band', '_blank');
-        });
     </script>
 </body>
 </html>

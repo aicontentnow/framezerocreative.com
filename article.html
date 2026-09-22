@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why a single AI readiness score ranks fast garbage above slow craft | FRAMEZERØ</title>
+<meta name="description" content="One number cannot separate a team shipping fast garbage from a team shipping slowly and well, so it flatters the wrong one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   FRAMEZERØ ARTICLE TOKENS
+   Change only this block to switch direction. Nothing below hardcodes a value.
+
+   DIRECTION A / INSTRUMENT  <- active
+   DIRECTION B / PAPER       <- see .dir-b below
+   DIRECTION C / LEDGER      <- see .dir-c below
+   ========================================================================= */
+:root {
+  --ground:      #0B0D10;
+  --raised:      #10141A;
+  --rule:        #1E232A;
+  --text:        #E6E3DB;
+  --text-strong: #F2EFE8;
+  --text-soft:   #CFCCC4;
+  --text-muted:  #A8ADB4;
+  --text-faint:  #8A9199;
+  --accent:      #C4FF36;
+
+  --font-body:    Newsreader, Georgia, 'Times New Roman', serif;
+  --font-display: Outfit, system-ui, sans-serif;
+  --font-mono:    'Space Mono', ui-monospace, monospace;
+
+  --measure: 660px;
+  --rail:    196px;
+
+  /* type scale */
+  --t-title:   clamp(2.1rem, 1.3rem + 2.6vw, 3.125rem);
+  --t-lede:    clamp(1.15rem, 1.05rem + 0.5vw, 1.3125rem);
+  --t-body:    clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
+  --t-beat:    clamp(1.5rem, 1.1rem + 1.4vw, 1.875rem);
+  --t-figure:  clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+  --t-label:   0.6875rem;
+  --t-micro:   0.625rem;
+
+  /* spacing */
+  --s-1: 0.5rem;  --s-2: 0.875rem; --s-3: 1.375rem;
+  --s-4: 1.875rem; --s-5: 2.75rem;  --s-6: 4rem;
+  --pad-x: clamp(1.25rem, 0.5rem + 4vw, 5rem);
+}
+
+/* DIRECTION B / PAPER: add class="dir-b" to <html> */
+.dir-b {
+  --ground: #F4F2EC; --raised: #EDEAE1; --rule: #D8D4C9;
+  --text: #16181C; --text-strong: #0E1013; --text-soft: #2B3036;
+  --text-muted: #4A5057; --text-faint: #6B7177;
+  --accent: #C4FF36;
+  --font-body: Newsreader, Georgia, serif;
+  --font-display: Newsreader, Georgia, serif;
+  --measure: 720px; --rail: 0px;
+}
+/* DIRECTION C / LEDGER: add class="dir-c" to <html> */
+.dir-c {
+  --ground: #08090B; --raised: #0D0F12; --rule: #191D22;
+  --text: #D6D9DC; --text-strong: #F0F2F4; --text-soft: #AEB4BB;
+  --text-muted: #9199A1; --text-faint: #5F666E;
+  --accent: #C4FF36;
+  --font-body: Outfit, system-ui, sans-serif;
+  --font-display: Outfit, system-ui, sans-serif;
+  --measure: 640px; --rail: 240px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--ground); color: var(--text);
+       font-family: var(--font-body); line-height: 1.68;
+       -webkit-font-smoothing: antialiased; }
+
+a { color: var(--accent); text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+a:hover, a:focus-visible { border-bottom-color: var(--accent); }
+.dir-b a { color: #2F3A0E;
+    border-bottom: none;
+    box-shadow: inset 0 -0.42em 0 color-mix(in srgb, var(--accent) 55%, transparent); }
+.dir-b a:hover, .dir-b a:focus-visible { box-shadow: inset 0 -0.9em 0 var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.masthead { display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-3); padding: var(--s-3) var(--pad-x); border-bottom: 1px solid var(--rule); }
+.wordmark { font-family: var(--font-display); font-weight: 500; font-size: 1.0625rem;
+  letter-spacing: 0.22em; color: var(--text); border: 0; }
+.wordmark .o { color: var(--accent); }
+.masthead nav { font-family: var(--font-mono); font-size: var(--t-label);
+  letter-spacing: 0.14em; color: var(--text-faint); display: flex; gap: var(--s-3); }
+.masthead nav a { color: var(--text-faint); border: 0; }
+.masthead nav a:hover { color: var(--text); }
+
+.shell { display: grid; grid-template-columns: var(--rail) minmax(0, 1fr); }
+.rail { border-right: 1px solid var(--rule); padding: var(--s-5) 0 var(--s-5) var(--pad-x);
+  display: flex; flex-direction: column; gap: var(--s-4); }
+.rail dl { margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.rail dt { font-family: var(--font-mono); font-size: var(--t-micro);
+  letter-spacing: 0.16em; color: var(--text-faint); }
+.rail dd { margin: 0; font-family: var(--font-mono); font-size: 0.75rem;
+  line-height: 1.6; color: var(--text-muted); }
+.rail .tick { width: 28px; height: 1px; background: var(--accent); }
+
+.article { padding: var(--s-5) var(--pad-x) var(--s-6) clamp(1.25rem, 0.5rem + 3vw, 4rem); }
+.article > * { max-width: var(--measure); }
+
+h1 { margin: 0 0 var(--s-5); font-family: var(--font-display); font-weight: 300;
+  font-size: var(--t-title); line-height: 1.1; letter-spacing: -0.015em;
+  color: var(--text-strong); max-width: 20ch; }
+.lede { margin: 0 0 var(--s-3); font-size: var(--t-lede); line-height: 1.62; color: var(--text); }
+p { margin: 0 0 var(--s-3); font-size: var(--t-body); color: var(--text-soft); }
+
+.beat { margin: var(--s-4) 0; font-family: var(--font-display); font-weight: 300;
+  font-size: var(--t-beat); line-height: 1.3; color: var(--text-strong); max-width: 22ch; }
+
+figure.stat { margin: 0 0 var(--s-4); padding: var(--s-3) var(--s-3) var(--s-2);
+  border-left: 2px solid var(--accent); background: var(--raised);
+  display: flex; flex-direction: column; gap: var(--s-1); }
+.stat .row { display: flex; align-items: baseline; gap: var(--s-2); flex-wrap: wrap; }
+.stat .n { font-family: var(--font-mono); font-weight: 700; font-size: var(--t-figure);
+  color: var(--accent); }
+.stat .n.plain { color: var(--text); }
+.stat .what { font-family: var(--font-display); font-size: 0.9375rem; color: var(--text); }
+.stat figcaption { font-family: var(--font-mono); font-size: var(--t-label);
+  letter-spacing: 0.06em; color: var(--text-faint); padding-top: 0.25rem; }
+.vendor { color: var(--accent); }
+
+.tail { margin-top: var(--s-5); padding-top: var(--s-3); border-top: 1px solid var(--rule);
+  font-family: var(--font-display); font-size: 1rem; line-height: 1.6; color: var(--text-muted); }
+
+footer { border-top: 1px solid var(--rule); padding: var(--s-3) var(--pad-x);
+  font-family: var(--font-mono); font-size: var(--t-label); letter-spacing: 0.1em;
+  color: var(--text-faint); display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+
+@media (max-width: 560px) {
+  .masthead { flex-wrap: wrap; row-gap: var(--s-1); }
+  .masthead nav { gap: var(--s-2); font-size: var(--t-micro); }
+}
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .rail { border-right: 0; border-bottom: 1px solid var(--rule);
+    padding: var(--s-3) var(--pad-x); flex-direction: row; flex-wrap: wrap; gap: var(--s-4); }
+  .rail .tick { display: none; }
+  .article { padding: var(--s-4) var(--pad-x) var(--s-5); }
+  h1 { max-width: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="wordmark" href="/">FRAMEZER<span class="o">Ø</span></a>
+  <nav aria-label="Sections">
+    <a href="/">INDEX</a>
+    <a href="/#writing">WRITING</a>
+    <a href="/#measures">MEASURES</a>
+  </nav>
+</header>
+
+<div class="shell">
+
+  <aside class="rail">
+    <dl><dt>FILED</dt><dd><time datetime="2026-09-22">2026.09.22</time></dd></dl>
+    <dl><dt>SUBJECT</dt><dd>Measurement<br>Judgment</dd></dl>
+    <dl><dt>SOURCES</dt><dd>1 cited</dd></dl>
+    <div class="tick" aria-hidden="true"></div>
+  </aside>
+
+  <article class="article">
+
+    <h1>Why a single AI readiness score ranks fast garbage above slow craft</h1>
+
+    <p class="lede">Most AI readiness scores would rank a team shipping fast garbage above a team shipping slowly and well.</p>
+
+    <p>That is not a flaw in one vendor's assessment. It is what happens any time capability gets collapsed into a single number. Add up thirteen capabilities on a flat scale and a team that piloted all thirteen once and shipped none scores sixty-seven and reads as mature.</p>
+
+    <figure class="stat">
+      <div class="row"><span class="n">95%</span><span class="what">of B2B marketers use AI</span></div>
+      <div class="row"><span class="n plain">&lt;40%</span><span class="what">report a measurable lift</span></div>
+      <figcaption>CMI 2026 &middot; <a href="#">annual research report</a></figcaption>
+    </figure>
+
+    <p>A team running four of them in production, with someone reviewing every output before it goes anywhere, scores lower and looks behind.</p>
+
+    <p class="beat">It flatters the wrong team.</p>
+
+    <p>I built the instrument on two axes instead. Leverage asks whether the machine is actually running. Judgment asks whether anything in the process decides what is good enough.</p>
+
+    <p class="tail">The test is cheap. Ask an assistant the question your best customer asked you last month, and see whether you are in the answer.</p>
+
+  </article>
+</div>
+
+<footer>
+  <span>FRAMEZERØ</span>
+  <span>NO GATE &middot; NO FORM &middot; SOURCES LINKED</span>
+</footer>
+
+</body>
+</html>
