@@ -27,6 +27,7 @@
   --text-muted:  #A8ADB4;
   --text-faint:  #8A9199;
   --accent:      #C4FF36;
+  --on-accent:   #0B0D10;   /* ink that sits ON the accent, dark in every direction */
 
   --font-body:    Newsreader, Georgia, 'Times New Roman', serif;
   --font-display: Outfit, system-ui, sans-serif;
@@ -54,8 +55,8 @@
 .dir-b {
   --ground: #F4F2EC; --raised: #EDEAE1; --rule: #D8D4C9;
   --text: #16181C; --text-strong: #0E1013; --text-soft: #2B3036;
-  --text-muted: #4A5057; --text-faint: #6B7177;
-  --accent: #C4FF36;
+  --text-muted: #4A5057; --text-faint: #565C63;
+  --accent: #C4FF36; --on-accent: #16181C;
   --font-body: Newsreader, Georgia, serif;
   --font-display: Newsreader, Georgia, serif;
   --measure: 720px; --rail: 0px;
@@ -71,7 +72,7 @@
   --ground: #08090B; --raised: #0D0F12; --rule: #191D22;
   --text: #D6D9DC; --text-strong: #F0F2F4; --text-soft: #AEB4BB;
   --text-muted: #9199A1; --text-faint: #5F666E;
-  --accent: #C4FF36;
+  --accent: #C4FF36; --on-accent: #08090B;
   --font-body: Outfit, system-ui, sans-serif;
   --font-display: Outfit, system-ui, sans-serif;
   --measure: 640px; --rail: 240px;
@@ -115,6 +116,7 @@ a { color: inherit; text-decoration: none; }
 
 .article { padding: var(--s-5) var(--pad-x) var(--s-6) clamp(1.25rem, 0.5rem + 3vw, 4rem); }
 .article > * { max-width: var(--measure); }
+.sources { max-width: var(--measure); }
 
 h1 { margin: 0 0 var(--s-5); font-family: var(--font-display); font-weight: 300;
   font-size: var(--t-title); line-height: 1.1; letter-spacing: -0.015em;
@@ -139,6 +141,32 @@ figure.stat { margin: 0 0 var(--s-4); padding: var(--s-3) var(--s-3) var(--s-2);
 
 .tail { margin-top: var(--s-5); padding-top: var(--s-3); border-top: 1px solid var(--rule);
   font-family: var(--font-display); font-size: 1rem; line-height: 1.6; color: var(--text-muted); }
+
+/* SOURCES: the one structural idea worth keeping from direction C.
+   Every figure carries a numbered ref, every source is listed, and anything
+   published by a firm selling the remedy is flagged as such. */
+.sources { margin-top: var(--s-6); padding-top: var(--s-3);
+  border-top: 1px solid var(--text); }
+.sources h2 { margin: 0 0 var(--s-3); font-family: var(--font-mono);
+  font-size: var(--t-label); letter-spacing: 0.18em; font-weight: 400;
+  color: var(--text-faint); text-transform: uppercase; }
+.sources ol { margin: 0; padding: 0; list-style: none;
+  display: flex; flex-direction: column; }
+.sources li { display: grid; grid-template-columns: 3rem minmax(0, 1fr);
+  gap: var(--s-2); padding: var(--s-2) 0; border-bottom: 1px solid var(--rule); }
+.sources li:last-child { border-bottom: 0; }
+.sources .ref { font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--text-faint); padding-top: 0.2rem; }
+.sources cite { font-style: normal; font-weight: 500; color: var(--text); }
+.sources .meta { font-size: 0.9375rem; line-height: 1.55; color: var(--text-muted); }
+.flag { display: inline-block; margin-top: 0.4rem; padding: 0.15rem 0.45rem;
+  font-family: var(--font-mono); font-size: var(--t-micro); letter-spacing: 0.12em;
+  color: var(--on-accent); background: var(--accent); }
+sup.ref-mark { font-family: var(--font-mono); font-size: 0.6875rem;
+  vertical-align: super; line-height: 0; }
+sup.ref-mark a { color: var(--text-faint); border: 0; }
+sup.ref-mark a:hover { color: var(--accent); }
+.dir-b sup.ref-mark a { box-shadow: none; }
 
 footer { border-top: 1px solid var(--rule); padding: var(--s-3) var(--pad-x);
   font-family: var(--font-mono); font-size: var(--t-label); letter-spacing: 0.1em;
@@ -175,7 +203,7 @@ footer { border-top: 1px solid var(--rule); padding: var(--s-3) var(--pad-x);
   <aside class="rail">
     <dl><dt>FILED</dt><dd><time datetime="2026-09-22">2026.09.22</time></dd></dl>
     <dl><dt>SUBJECT</dt><dd>Measurement<br>Judgment</dd></dl>
-    <dl><dt>SOURCES</dt><dd>1 cited</dd></dl>
+    <dl><dt>SOURCES</dt><dd><a href="#sources">2 cited</a></dd></dl>
     <div class="tick" aria-hidden="true"></div>
   </aside>
 
@@ -190,7 +218,7 @@ footer { border-top: 1px solid var(--rule); padding: var(--s-3) var(--pad-x);
     <figure class="stat">
       <div class="row"><span class="n">95%</span><span class="what">of B2B marketers use AI</span></div>
       <div class="row"><span class="n plain">&lt;40%</span><span class="what">report a measurable lift</span></div>
-      <figcaption>CMI 2026 &middot; <a href="#">annual research report</a></figcaption>
+      <figcaption>CMI 2026<sup class="ref-mark"><a href="#s1" aria-label="Source 1">[1]</a></sup></figcaption>
     </figure>
 
     <p>A team running four of them in production, with someone reviewing every output before it goes anywhere, scores lower and looks behind.</p>
@@ -200,6 +228,27 @@ footer { border-top: 1px solid var(--rule); padding: var(--s-3) var(--pad-x);
     <p>I built the instrument on two axes instead. Leverage asks whether the machine is actually running. Judgment asks whether anything in the process decides what is good enough.</p>
 
     <p class="tail">The test is cheap. Ask an assistant the question your best customer asked you last month, and see whether you are in the answer.</p>
+
+    <section class="sources" id="sources">
+      <h2>Sources</h2>
+      <ol>
+        <li id="s1">
+          <span class="ref">[1]</span>
+          <div class="meta">
+            <cite>Content Marketing Institute</cite>, B2B Content Marketing Benchmarks, Budgets and Trends 2026.
+            <a href="#">Read it</a>
+          </div>
+        </li>
+        <li id="s2">
+          <span class="ref">[2]</span>
+          <div class="meta">
+            <cite>Muck Rack</cite>, analysis of more than one million AI prompts, 2026.
+            <a href="#">Read it</a>
+            <br><span class="flag">VENDOR-PUBLISHED</span>
+          </div>
+        </li>
+      </ol>
+    </section>
 
   </article>
 </div>
