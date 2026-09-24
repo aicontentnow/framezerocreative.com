@@ -255,8 +255,20 @@
         }
 
         .btn-primary:hover {
-            background: #b8ff52;
+            background: #d4ff6b;
             box-shadow: 0 0 30px rgba(196, 255, 54, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--green);
+            border: 1.5px solid rgba(196, 255, 54, 0.35);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--green);
+            background: rgba(196, 255, 54, 0.07);
             transform: translateY(-2px);
         }
 
@@ -1032,7 +1044,8 @@
             <span>ØWNER TWIN</span>
         </a>
         <nav>
-            <a href="#work">Work</a>
+            <a href="/assessment/">Assessment</a>
+                <a href="#work">Work</a>
             <a href="#method">Method</a>
             <a href="#studio">Studio</a>
             <a href="#blog">Blog</a>
@@ -1062,7 +1075,8 @@
                 <h1>YOU CAN&rsquo;T CLONE YOURSELF<br><span class="hero-highlight">SO WE DID</span></h1>
                 <p>OwnerTwin is custom intelligence that knows your business the way you do. It takes the repeat work. You take the customers.</p>
                 <div class="hero-ctas">
-                    <a href="#contact" class="btn btn-primary">See what yours would take</a>
+                    <a href="/assessment/" class="btn btn-primary">Take the assessment</a>
+                    <a href="#contact" class="btn btn-secondary">Follow the writing</a>
                 </div>
             </div>
         </section>

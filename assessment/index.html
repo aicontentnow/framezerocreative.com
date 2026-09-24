@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Owner Gap | OwnerTwin</title>
+<meta name="description" content="Ten questions. Two axes. Find out whether your business is actually patterned enough to get out of your head, and whether you are the bottleneck it needs freeing from.">
+<link rel="canonical" href="https://ownertwin.com/assessment/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Owner Gap">
+<meta property="og:description" content="Ten questions. Two axes. Most readiness quizzes flatter you. This one tells you if we are the wrong fit.">
+<meta property="og:url" content="https://ownertwin.com/assessment/">
+<meta property="og:image" content="https://ownertwin.com/brand/ot-share-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Owner Gap">
+<meta name="twitter:description" content="Ten questions. Two axes. Most readiness quizzes flatter you. This one tells you if we are the wrong fit.">
+<meta name="twitter:image" content="https://ownertwin.com/brand/ot-share-1200x630.png">
+<link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
+<link rel="icon" href="/brand/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#050508; --surface:#0a0d12; --card:rgba(10,13,18,.7);
+  --green:#C4FF36; --green-dim:#6B8F1E;
+  --cream:#f0ece4; --warm:#d4c5a9; --muted:#8a8a8a; --dim:#555;
+  --line:rgba(196,255,54,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--void); color:var(--cream);
+  font-family:'Outfit','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
+  font-weight:300; line-height:1.6;
+  min-height:100vh; padding:0 16px 80px;
+  overflow-x:hidden;
+}
+.mono{font-family:'Space Mono',monospace}
+.wrap{max-width:660px;margin:0 auto}
+
+/* header */
+header{padding:34px 0 0;display:flex;align-items:center;gap:12px}
+header svg{width:30px;height:30px;flex:none}
+header .wm{font-size:.86rem;font-weight:600;letter-spacing:.18em;color:var(--cream);text-decoration:none}
+header .wm span{color:var(--green)}
+header .wm em{font-style:normal;font-weight:200}
+
+/* progress */
+.bar{height:2px;background:rgba(255,255,255,.08);margin:30px 0 0;border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--green);transition:width .35s cubic-bezier(.4,0,.2,1)}
+.count{margin-top:10px;font-size:.66rem;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
+
+/* intro */
+.intro{padding:52px 0 0}
+h1{
+  font-size:clamp(2rem,7.5vw,3.1rem); font-weight:600; line-height:1.04;
+  letter-spacing:-.02em; margin-bottom:1.1rem;
+}
+h1 .hl{color:var(--green)}
+.lede{font-size:clamp(1rem,2.6vw,1.15rem);color:var(--warm);margin-bottom:1.5rem}
+.intro p+p{margin-top:.9rem}
+.intro .fine{color:var(--muted);font-size:.93rem}
+.axes{
+  border:1px solid var(--line); border-radius:12px; background:var(--card);
+  padding:22px 24px; margin:28px 0 30px;
+}
+.axes dt{font-size:.66rem;letter-spacing:.16em;color:var(--green);text-transform:uppercase;font-family:'Space Mono',monospace}
+.axes dd{margin:5px 0 16px;color:var(--warm);font-size:.97rem}
+.axes dd:last-child{margin-bottom:0}
+
+/* question */
+.q{padding:46px 0 0;display:none}
+.q.on{display:block;animation:in .4s ease both}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.qtag{font-size:.64rem;letter-spacing:.17em;color:var(--green-dim);text-transform:uppercase;margin-bottom:14px;font-family:'Space Mono',monospace}
+.q h2{font-size:clamp(1.3rem,4.4vw,1.85rem);font-weight:600;line-height:1.22;letter-spacing:-.01em;margin-bottom:26px}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{
+  width:100%; text-align:left; cursor:pointer;
+  background:var(--card); color:var(--cream);
+  border:1.5px solid var(--line); border-radius:10px;
+  padding:15px 18px; font:inherit; font-size:1rem;
+  transition:border-color .2s,background .2s,transform .12s;
+  display:flex; align-items:flex-start; gap:13px;
+}
+.opt:hover,.opt:focus-visible{border-color:rgba(196,255,54,.45);background:rgba(10,13,18,.92);outline:none}
+.opt:active{transform:scale(.995)}
+.opt b{
+  flex:none;width:19px;height:19px;margin-top:3px;border-radius:50%;
+  border:1.5px solid var(--dim);transition:border-color .2s,background .2s;
+}
+.opt:hover b{border-color:var(--green)}
+.back{
+  margin-top:24px;background:none;border:none;cursor:pointer;font:inherit;
+  color:var(--dim);font-size:.85rem;letter-spacing:.02em;padding:6px 0;
+}
+.back:hover{color:var(--warm)}
+
+/* result */
+.res{padding:46px 0 0;display:none}
+.res.on{display:block;animation:in .5s ease both}
+.verdict{font-size:.66rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;font-family:'Space Mono',monospace;margin-bottom:12px}
+.res h2{font-size:clamp(2rem,7.5vw,3rem);font-weight:600;line-height:1.02;letter-spacing:-.02em;color:var(--green);margin-bottom:1.1rem}
+.res .body p{color:var(--warm);font-size:1.03rem}
+.res .body p+p{margin-top:.95rem}
+
+/* matrix */
+.mx{margin:32px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.mx-head{padding:14px 18px 0;font-size:.63rem;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;font-family:'Space Mono',monospace}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);margin:12px 0 0}
+.cell{background:var(--void);padding:17px 16px;min-height:88px}
+.cell .nm{font-size:.83rem;font-weight:600;letter-spacing:.04em;color:var(--dim);margin-bottom:5px}
+.cell .ds{font-size:.78rem;color:var(--dim);line-height:1.45}
+.cell.you{background:rgba(196,255,54,.09)}
+.cell.you .nm{color:var(--green)}
+.cell.you .ds{color:var(--warm)}
+.cell.you .nm::after{content:' \00b7 you';font-weight:400;letter-spacing:.1em;font-size:.68rem;opacity:.75}
+.mx-ax{display:flex;justify-content:space-between;padding:11px 16px;font-size:.62rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;font-family:'Space Mono',monospace}
+.mx-up{padding:9px 16px 0;font-size:.62rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;font-family:'Space Mono',monospace}
+
+/* scores */
+.sc{display:flex;gap:11px;margin:0 0 30px;flex-wrap:wrap}
+.sc div{flex:1 1 150px;border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--card)}
+.sc .k{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;font-family:'Space Mono',monospace}
+.sc .v{font-size:1.7rem;font-weight:600;color:var(--green);line-height:1.2;margin-top:3px;font-family:'Space Mono',monospace}
+.sc .v small{font-size:.8rem;font-weight:400;color:var(--dim)}
+
+/* cta */
+.cta{border:1.5px solid rgba(196,255,54,.3);border-radius:12px;padding:26px 24px;background:var(--card);margin:6px 0 26px}
+.cta h3{font-size:1.2rem;font-weight:600;margin-bottom:.6rem;color:var(--cream)}
+.cta p{color:var(--warm);font-size:.97rem;margin-bottom:1.25rem}
+.btn{
+  display:inline-block;background:var(--green);color:#0b1004;
+  font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;
+  padding:14px 26px;border-radius:8px;text-decoration:none;font-weight:700;border:none;cursor:pointer;
+  transition:transform .15s,box-shadow .2s;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 0 26px rgba(196,255,54,.3)}
+.btn.ghost{background:none;color:var(--green);border:1.5px solid rgba(196,255,54,.35)}
+.btn.ghost:hover{box-shadow:none;border-color:var(--green)}
+.secondary{border-top:1px solid rgba(255,255,255,.07);padding-top:24px;margin-top:4px}
+.secondary h4{font-size:.98rem;font-weight:600;margin-bottom:.4rem}
+.secondary p{color:var(--muted);font-size:.9rem;margin-bottom:1rem}
+form{display:flex;gap:9px;flex-wrap:wrap}
+input[type=email]{
+  flex:1 1 200px;background:rgba(255,255,255,.04);border:1.5px solid var(--line);
+  border-radius:8px;padding:13px 15px;color:var(--cream);font:inherit;font-size:.95rem;
+}
+input[type=email]:focus{outline:none;border-color:rgba(196,255,54,.45)}
+input[type=email]::placeholder{color:var(--dim)}
+.again{margin-top:26px}
+.again button{background:none;border:none;color:var(--dim);font:inherit;font-size:.85rem;cursor:pointer;padding:6px 0}
+.again button:hover{color:var(--warm)}
+
+footer{
+  margin-top:64px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);
+  font-size:.8rem;color:var(--dim);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap
+}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--green)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+/* The 2x2 is the instrument. It stays a 2x2 on every real phone. */
+@media (max-width:470px){
+  .cell{padding:13px 11px;min-height:96px}
+  .cell .nm{font-size:.74rem;letter-spacing:.02em}
+  .cell .ds{font-size:.7rem;line-height:1.4}
+  .cell.you .nm::after{display:block;margin-top:1px}
+  .mx-ax,.mx-up,.mx-head{font-size:.57rem;padding-left:11px;padding-right:11px}
+}
+@media (max-width:330px){ .grid{grid-template-columns:1fr} .cell{min-height:auto} }
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <svg viewBox="0 0 128 128" role="img" aria-label="OwnerTwin">
+      <g fill="none" stroke="#C4FF36" stroke-width="9" stroke-linecap="butt">
+        <circle cx="64" cy="64" r="33"/>
+        <line x1="33.594" y1="94.406" x2="94.406" y2="33.594"/>
+        <line x1="107" y1="64" x2="122" y2="64"/><line x1="64" y1="107" x2="64" y2="122"/>
+        <line x1="21" y1="64" x2="6" y2="64"/><line x1="64" y1="21" x2="64" y2="6"/>
+      </g>
+    </svg>
+    <a class="wm" href="/"><span>&Oslash;</span>WNER<em>&nbsp;TWIN</em></a>
+  </header>
+
+  <div class="bar" id="bar" hidden><i id="fill"></i></div>
+  <div class="count mono" id="count" hidden></div>
+
+  <!-- INTRO -->
+  <section class="intro" id="intro">
+    <h1>THE OWNER GAP<br><span class="hl">TEN QUESTIONS</span></h1>
+    <p class="lede">Most readiness quizzes are built to tell you that you are ready. This one is built to tell you the truth, including when the truth is that we are the wrong people to call.</p>
+    <p class="fine">There are two things that decide whether a business can get out of its owner's head. Nearly every assessment measures one of them and calls it a score.</p>
+
+    <dl class="axes">
+      <dt>Axis one &middot; How much is locked in your head</dt>
+      <dd>If the answer is not much, you have already done the hard part and you do not need us.</dd>
+      <dt>Axis two &middot; How repeatable the work is</dt>
+      <dd>If the answer is not very, no system can hold it, and anything that claims to will just hand you a worse version of your own judgment.</dd>
+    </dl>
+
+    <p class="fine">You need both to be high for any of this to work. Cross them and there are four places to land, and only one of them is us.</p>
+    <p style="margin-top:26px"><button class="btn" id="start">Start</button></p>
+    <p class="fine" style="margin-top:14px">No email required to see your result.</p>
+  </section>
+
+  <!-- QUESTIONS injected here -->
+  <div id="qs"></div>
+
+  <!-- RESULT -->
+  <section class="res" id="res">
+    <div class="verdict mono">Your position</div>
+    <h2 id="rname"></h2>
+    <div class="body" id="rbody"></div>
+
+    <div class="sc" id="scores"></div>
+
+    <div class="mx">
+      <div class="mx-head">Where you landed</div>
+      <div class="mx-up">&uarr; more locked in your head</div>
+      <div class="grid">
+        <div class="cell" data-k="custom"><div class="nm">ONE OF A KIND</div><div class="ds">All you, nothing repeats</div></div>
+        <div class="cell" data-k="ready"><div class="nm">READY</div><div class="ds">All you, and it repeats</div></div>
+        <div class="cell" data-k="out"><div class="nm">OUT OF THE WAY</div><div class="ds">Not you, nothing repeats</div></div>
+        <div class="cell" data-k="written"><div class="nm">WRITTEN DOWN</div><div class="ds">Not you, and it repeats</div></div>
+      </div>
+      <div class="mx-ax"><span>&larr; less repeatable</span><span>more repeatable &rarr;</span></div>
+    </div>
+
+    <div id="ctaZone"></div>
+
+    <div class="secondary">
+      <h4>The writing, either way</h4>
+      <p>What we learn building these, and what we get wrong. Sent when there is something worth sending.</p>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/FRAMEZERO" method="post" target="popupwindow"
+            onsubmit="window.open('https://buttondown.com/FRAMEZERO','popupwindow')">
+        <label class="sr" for="bd">Email address</label>
+        <input id="bd" type="email" name="email" placeholder="you@yourbusiness.com" autocomplete="email" required>
+        <input type="hidden" name="embed" value="1">
+        <button type="submit" class="btn ghost">Subscribe</button>
+      </form>
+    </div>
+
+    <div class="again"><button id="redo">Start over</button></div>
+  </section>
+
+  <footer>
+    <span>Built by Bodhi Valentine</span>
+    <span><a href="/">ownertwin.com</a></span>
+  </footer>
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+   CONFIG. Drop the Cal.com booking URL in here and the READY result
+   swaps its email button for a booking button. Leave it empty and the
+   page degrades to email, which is the correct behaviour at low volume.
+------------------------------------------------------------------ */
+var CAL_URL   = "";
+var EMAIL     = "hello@framezerocreative.com";
+
+/* Axis A: how much is locked in the owner's head. Axis B: how repeatable.
+   Every option scores 0 to 3. Five questions per axis, so 15 is the max
+   on each. High is 8 or more, which is the first value above the midpoint. */
+var Q = [
+ {ax:"A",t:"If nobody could reach you for a week, what happens to the business?",
+  o:[["It runs. Somebody else covers.",0],["Most of it runs. A few things wait.",1],["Customers notice. Things start slipping.",2],["It stops.",3]]},
+ {ax:"B",t:"How different is your fiftieth job from your first?",
+  o:[["Every one is genuinely different.",0],["Same trade, but the work changes a lot.",1],["Same shape, different details.",2],["Close to identical.",3]]},
+ {ax:"A",t:"Who else can price a job the way you would?",
+  o:[["Two or more people, and I trust their numbers.",0],["One person, close enough.",1],["Nobody. They ask me.",2],["Nobody, and when they try I redo it.",3]]},
+ {ax:"B",t:"When a customer asks you something, how often have you answered that exact question before?",
+  o:[["Rarely. They are always new.",0],["Sometimes.",1],["Often.",2],["Almost always. I could recite it.",3]]},
+ {ax:"A",t:"A question comes in that your team cannot answer. Where does it go?",
+  o:[["To a document or a process we wrote.",0],["To whoever has done it before.",1],["To me.",2],["To me, and I will answer the same one again next month.",3]]},
+ {ax:"B",t:"Do you explain the same thing to different people more than once?",
+  o:[["Not really.",0],["Occasionally.",1],["Often.",2],["Constantly. It is most of what I do.",3]]},
+ {ax:"A",t:"How much of what you know about your customers is written down anywhere?",
+  o:[["Most of it, and people actually use it.",0],["Some of it, in a few places.",1],["Barely any.",2],["It is in my head, my phone, and a notebook somewhere.",3]]},
+ {ax:"B",t:"Is there a right way to do the main thing your business does?",
+  o:[["No. It is a judgment call every time.",0],["It depends heavily on the situation.",1],["Mostly a right way, with exceptions.",2],["Yes, and I know exactly what it is.",3]]},
+ {ax:"A",t:"The last time you tried to hand something off, how did it go?",
+  o:[["It stuck. I do not touch it any more.",0],["It mostly stuck.",1],["It came back to me.",2],["I have not really tried.",3]]},
+ {ax:"B",t:"Could you write down how you decide what to charge?",
+  o:[["No. I read the situation.",0],["Partly.",1],["Roughly, yes.",2],["Yes. It is close to a formula.",3]]}
+];
+
+var R = {
+ ready:{n:"READY",
+  b:["Your work repeats, and it all runs through you. Those two facts together are the entire reason this job exists. The work is patterned enough that a system can hold it, and it is locked in your head tightly enough that nothing else currently can.",
+     "This is who we build for. Not a maybe."],
+  cta:{h:"The next step is a conversation",
+       p:"Twenty five minutes. No pitch, no deck. We ask what is eating your week, and we tell you straight whether a twin is the right answer for it or whether something smaller would do more.",
+       label:"Book the 25 minutes"}},
+ custom:{n:"ONE OF A KIND",
+  b:["Everything runs through you, and the work genuinely changes every time. We are not going to pretend a twin fixes that. When judgment is the product, a system that leans on your last answer gives you a worse version of yourself and calls it leverage.",
+     "What helps here is narrower than what we build. Find the one part that does repeat: the intake, the quoting, the follow up, the thing you explain to every new customer. Get that one out of your head and leave the judgment where it belongs, with you.",
+     "We would rather tell you that than sell you the big version."],
+  cta:null},
+ written:{n:"WRITTEN DOWN",
+  b:["The work repeats and you have already got a good amount of it out of your head. That is further than most owners get, and it means the expensive part of this is behind you.",
+     "The job here is smaller than what we usually build, which is worth knowing before either of us spends an hour on it. Still worth a conversation, just a short one."],
+  cta:{h:"Worth a short conversation",
+       p:"Tell us what is still stuck and we will tell you whether it is a job at all. It might not be, and that is a fine outcome.",
+       label:"Write to us"}},
+ out:{n:"OUT OF THE WAY",
+  b:["You are not the bottleneck, and the work does not repeat enough for a system to hold it. On both axes you are the wrong customer for us, and we would rather say that plainly than book a meeting and find out together.",
+     "If the business changes shape, or if you just want to watch what we build, the writing is free and there is nothing attached to it."],
+  cta:null}
+};
+
+var i = 0, ans = [];
+var intro=document.getElementById('intro'), qs=document.getElementById('qs'),
+    res=document.getElementById('res'), bar=document.getElementById('bar'),
+    fill=document.getElementById('fill'), count=document.getElementById('count');
+
+Q.forEach(function(q,n){
+  var s=document.createElement('section'); s.className='q'; s.id='q'+n;
+  var h=''; q.o.forEach(function(o,k){
+    h+='<button class="opt" data-v="'+o[1]+'"><b></b><span>'+o[0]+'</span></button>';
+  });
+  s.innerHTML='<div class="qtag mono">Question '+(n+1)+' of '+Q.length+'</div>'
+            + '<h2>'+q.t+'</h2><div class="opts">'+h+'</div>'
+            + (n>0?'<button class="back">Back</button>':'');
+  qs.appendChild(s);
+  s.querySelectorAll('.opt').forEach(function(b){
+    b.addEventListener('click',function(){ ans[n]=+b.dataset.v; go(n+1); });
+  });
+  var bk=s.querySelector('.back');
+  if(bk) bk.addEventListener('click',function(){ go(n-1); });
+});
+
+function show(el){
+  [intro,res].concat([].slice.call(document.querySelectorAll('.q')))
+    .forEach(function(e){ e.classList.remove('on'); });
+  if(el===intro){ intro.style.display='block'; } else { intro.style.display='none'; }
+  if(el!==intro) el.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function go(n){
+  if(n<0) n=0;
+  if(n>=Q.length){ return finish(); }
+  i=n;
+  bar.hidden=false; count.hidden=false;
+  fill.style.width=((n)/Q.length*100)+'%';
+  count.textContent=(n)+' of '+Q.length+' answered';
+  show(document.getElementById('q'+n));
+}
+
+function finish(){
+  var a=0,b=0;
+  Q.forEach(function(q,n){ if(q.ax==='A') a+=ans[n]||0; else b+=ans[n]||0; });
+  var hiA=a>=8, hiB=b>=8;
+  var key = hiA ? (hiB?'ready':'custom') : (hiB?'written':'out');
+  var r=R[key];
+
+  document.getElementById('rname').textContent=r.n;
+  document.getElementById('rbody').innerHTML=r.b.map(function(p){return '<p>'+p+'</p>';}).join('');
+
+  document.getElementById('scores').innerHTML =
+    '<div><div class="k mono">Locked in your head</div><div class="v mono">'+a+'<small> / 15</small></div></div>'+
+    '<div><div class="k mono">Repeatable work</div><div class="v mono">'+b+'<small> / 15</small></div></div>';
+
+  document.querySelectorAll('.cell').forEach(function(c){
+    c.classList.toggle('you', c.dataset.k===key);
+  });
+
+  var z=document.getElementById('ctaZone');
+  if(r.cta){
+    var href, label=r.cta.label;
+    if(key==='ready' && CAL_URL){ href=CAL_URL; }
+    else {
+      var sub='The Owner Gap: '+r.n+' ('+a+'/15 locked, '+b+'/15 repeatable)';
+      href='mailto:'+EMAIL+'?subject='+encodeURIComponent(sub);
+      if(key==='ready') label='Write to us';
+    }
+    z.innerHTML='<div class="cta"><h3>'+r.cta.h+'</h3><p>'+r.cta.p+'</p>'
+              + '<a class="btn" href="'+href+'">'+label+'</a></div>';
+  } else { z.innerHTML=''; }
+
+  fill.style.width='100%';
+  count.textContent='Complete';
+  show(res);
+}
+
+document.getElementById('start').addEventListener('click',function(){ go(0); });
+document.getElementById('redo').addEventListener('click',function(){
+  ans=[]; bar.hidden=true; count.hidden=true; fill.style.width='0';
+  show(intro);
+});
+</script>
+</body>
+</html>
