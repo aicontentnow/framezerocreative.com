@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="/brand/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
     <title>FRAMEZERØ CREATIVE | Truth Extraction + System Building</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         /* ===== CSS VARIABLES ===== */
         :root {
-            --void: #03070B;
+            --void: #050508;
             --surface: #0a0d12;
             --card: rgba(10, 13, 18, 0.7);
-            --green: #AAF854;
-            --green-dim: #58AE45;
-            --cyan: #52ffd8;
-            --magenta: #F442BE;
-            --pink: #B6348F;
+            --green: #C4FF36;
+            --green-dim: #6B8F1E;
             --cream: #f0ece4;
             --warm: #d4c5a9;
             --muted: #8a8a8a;
@@ -51,7 +51,7 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(170, 248, 84, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 20% 50%, rgba(196, 255, 54, 0.03) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(82, 255, 216, 0.02) 0%, transparent 50%),
                 radial-gradient(circle at 60% 80%, rgba(244, 66, 190, 0.02) 0%, transparent 50%);
             pointer-events: none;
@@ -137,7 +137,7 @@
         header.scrolled {
             background: rgba(3, 7, 11, 0.7);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(170, 248, 84, 0.1);
+            border-bottom: 1px solid rgba(196, 255, 54, 0.1);
         }
 
         .header-logo {
@@ -167,12 +167,12 @@
         .logo-mark svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 8px rgba(170, 248, 84, 0));
+            filter: drop-shadow(0 0 8px rgba(196, 255, 54, 0));
             transition: filter 0.3s ease;
         }
 
         .header-logo:hover .logo-mark svg {
-            filter: drop-shadow(0 0 12px rgba(170, 248, 84, 0.6));
+            filter: drop-shadow(0 0 12px rgba(196, 255, 54, 0.6));
         }
 
         nav {
@@ -197,7 +197,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--green), var(--cyan));
+            background: var(--green);
             transition: width 0.3s ease;
         }
 
@@ -236,12 +236,12 @@
         .btn-primary {
             background: var(--green);
             color: var(--void);
-            box-shadow: 0 0 20px rgba(170, 248, 84, 0.3);
+            box-shadow: 0 0 20px rgba(196, 255, 54, 0.3);
         }
 
         .btn-primary:hover {
             background: #b8ff52;
-            box-shadow: 0 0 30px rgba(170, 248, 84, 0.5);
+            box-shadow: 0 0 30px rgba(196, 255, 54, 0.5);
             transform: translateY(-2px);
         }
 
@@ -255,7 +255,7 @@
             background: transparent;
             color: var(--green);
             border-color: var(--green);
-            box-shadow: inset 0 0 20px rgba(170, 248, 84, 0.2);
+            box-shadow: inset 0 0 20px rgba(196, 255, 54, 0.2);
         }
 
         /* ===== HERO SECTION ===== */
@@ -279,7 +279,7 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 50% 30%, rgba(170, 248, 84, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 30%, rgba(196, 255, 54, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 50% 70%, rgba(82, 255, 216, 0.06) 0%, transparent 40%);
             pointer-events: none;
         }
@@ -297,6 +297,21 @@
         .zero-canvas {
             width: 100%;
             height: 100%;
+            overflow: visible;
+        }
+
+        .zero-canvas .ticks {
+            transform-origin: 64px 64px;
+            animation: reticle-breath 6s ease-in-out infinite;
+        }
+
+        @keyframes reticle-breath {
+            0%, 100% { transform: scale(1);    opacity: 0.8; }
+            50%      { transform: scale(1.05); opacity: 1; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .zero-canvas .ticks { animation: none; opacity: 1; }
         }
 
         .hero-content {
@@ -345,7 +360,7 @@
 
         .project-card-small {
             background: rgba(10, 13, 18, 0.5);
-            border: 1px solid rgba(170, 248, 84, 0.2);
+            border: 1px solid rgba(196, 255, 54, 0.2);
             border-radius: 12px;
             overflow: hidden;
             backdrop-filter: blur(20px);
@@ -357,8 +372,8 @@
 
         .project-card-small:hover {
             background: rgba(10, 13, 18, 0.7);
-            border-color: rgba(170, 248, 84, 0.4);
-            box-shadow: 0 0 30px rgba(170, 248, 84, 0.2);
+            border-color: rgba(196, 255, 54, 0.4);
+            box-shadow: 0 0 30px rgba(196, 255, 54, 0.2);
             transform: translateY(-4px);
         }
 
@@ -414,7 +429,7 @@
 
         .method-card {
             background: var(--card);
-            border: 1.5px solid rgba(170, 248, 84, 0.15);
+            border: 1.5px solid rgba(196, 255, 54, 0.15);
             border-radius: 12px;
             padding: clamp(2rem, 5vw, 2.5rem);
             backdrop-filter: blur(20px);
@@ -430,7 +445,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(170, 248, 84, 0.1) 0%, transparent 100%);
+            background: linear-gradient(135deg, rgba(196, 255, 54, 0.1) 0%, transparent 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
@@ -442,7 +457,7 @@
             inset: 0;
             border-radius: 12px;
             padding: 1.5px;
-            background: linear-gradient(135deg, rgba(170, 248, 84, 0.3) 0%, rgba(82, 255, 216, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(196, 255, 54, 0.3) 0%, rgba(82, 255, 216, 0.1) 100%);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask-composite: exclude;
             opacity: 0;
@@ -452,9 +467,9 @@
 
         .method-card:hover {
             background: rgba(10, 13, 18, 0.85);
-            border-color: rgba(170, 248, 84, 0.4);
-            box-shadow: 0 0 40px rgba(170, 248, 84, 0.25),
-                        inset 0 0 40px rgba(170, 248, 84, 0.05);
+            border-color: rgba(196, 255, 54, 0.4);
+            box-shadow: 0 0 40px rgba(196, 255, 54, 0.25),
+                        inset 0 0 40px rgba(196, 255, 54, 0.05);
             transform: translateY(-6px);
         }
 
@@ -489,7 +504,7 @@
 
         .pillar-card {
             background: var(--card);
-            border: 1.5px solid rgba(170, 248, 84, 0.12);
+            border: 1.5px solid rgba(196, 255, 54, 0.12);
             border-radius: 12px;
             padding: clamp(1.75rem, 4vw, 2.5rem);
             backdrop-filter: blur(20px);
@@ -508,7 +523,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at center, rgba(170, 248, 84, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(196, 255, 54, 0.1) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
@@ -516,9 +531,9 @@
 
         .pillar-card:hover {
             background: rgba(10, 13, 18, 0.85);
-            border-color: rgba(170, 248, 84, 0.35);
-            box-shadow: 0 0 30px rgba(170, 248, 84, 0.2),
-                        inset 0 0 30px rgba(170, 248, 84, 0.04);
+            border-color: rgba(196, 255, 54, 0.35);
+            box-shadow: 0 0 30px rgba(196, 255, 54, 0.2),
+                        inset 0 0 30px rgba(196, 255, 54, 0.04);
             transform: translateY(-8px) scale(1.02);
         }
 
@@ -572,7 +587,7 @@
 
         .project-image {
             background: var(--card);
-            border: 1.5px solid rgba(170, 248, 84, 0.2);
+            border: 1.5px solid rgba(196, 255, 54, 0.2);
             border-radius: 12px;
             backdrop-filter: blur(20px);
             padding: 1px;
@@ -581,8 +596,8 @@
         }
 
         .project-image:hover {
-            border-color: rgba(170, 248, 84, 0.4);
-            box-shadow: 0 0 40px rgba(170, 248, 84, 0.25);
+            border-color: rgba(196, 255, 54, 0.4);
+            box-shadow: 0 0 40px rgba(196, 255, 54, 0.25);
         }
 
         .project-image img {
@@ -607,7 +622,7 @@
             font-family: 'Space Mono', monospace;
             font-size: 0.75rem;
             color: var(--green);
-            background: rgba(170, 248, 84, 0.1);
+            background: rgba(196, 255, 54, 0.1);
             padding: 0.4rem 0.8rem;
             border-radius: 4px;
             letter-spacing: 0.05em;
@@ -629,7 +644,7 @@
 
         .blog-card {
             background: var(--card);
-            border: 1.5px solid rgba(170, 248, 84, 0.12);
+            border: 1.5px solid rgba(196, 255, 54, 0.12);
             border-radius: 12px;
             padding: clamp(1.5rem, 3vw, 2rem);
             backdrop-filter: blur(20px);
@@ -648,14 +663,14 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(170, 248, 84, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(196, 255, 54, 0.1), transparent);
             transition: left 0.6s ease;
         }
 
         .blog-card:hover {
             background: rgba(10, 13, 18, 0.85);
-            border-color: rgba(170, 248, 84, 0.35);
-            box-shadow: 0 0 30px rgba(170, 248, 84, 0.2);
+            border-color: rgba(196, 255, 54, 0.35);
+            box-shadow: 0 0 30px rgba(196, 255, 54, 0.2);
             transform: translateY(-4px);
         }
 
@@ -666,7 +681,7 @@
         .blog-tag {
             font-family: 'Space Mono', monospace;
             font-size: 0.65rem;
-            color: var(--cyan);
+            color: var(--muted);
             letter-spacing: 0.1em;
             margin-bottom: 0.75rem;
             text-transform: uppercase;
@@ -696,8 +711,8 @@
 
         /* ===== NEWSLETTER SECTION ===== */
         .newsletter {
-            background: linear-gradient(135deg, rgba(170, 248, 84, 0.08) 0%, rgba(82, 255, 216, 0.06) 100%);
-            border: 1.5px solid rgba(170, 248, 84, 0.2);
+            background: linear-gradient(135deg, rgba(196, 255, 54, 0.08) 0%, rgba(82, 255, 216, 0.06) 100%);
+            border: 1.5px solid rgba(196, 255, 54, 0.2);
             border-radius: 12px;
             padding: clamp(2.5rem, 5vw, 4rem);
             text-align: center;
@@ -728,7 +743,7 @@
             min-width: 250px;
             padding: 0.85rem 1.25rem;
             background: rgba(10, 13, 18, 0.6);
-            border: 1px solid rgba(170, 248, 84, 0.2);
+            border: 1px solid rgba(196, 255, 54, 0.2);
             border-radius: 8px;
             color: var(--cream);
             font-family: 'Outfit', sans-serif;
@@ -743,8 +758,8 @@
         .newsletter-form input:focus {
             outline: none;
             background: rgba(10, 13, 18, 0.8);
-            border-color: rgba(170, 248, 84, 0.4);
-            box-shadow: 0 0 20px rgba(170, 248, 84, 0.15);
+            border-color: rgba(196, 255, 54, 0.4);
+            box-shadow: 0 0 20px rgba(196, 255, 54, 0.15);
         }
 
         .newsletter-form button {
@@ -754,7 +769,7 @@
         /* ===== FOOTER ===== */
         footer {
             background: rgba(3, 7, 11, 0.8);
-            border-top: 1px solid rgba(170, 248, 84, 0.1);
+            border-top: 1px solid rgba(196, 255, 54, 0.1);
             padding: clamp(3rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem);
             margin-top: 6rem;
             position: relative;
@@ -827,7 +842,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(170, 248, 84, 0.2);
+            border: 1px solid rgba(196, 255, 54, 0.2);
             border-radius: 50%;
             color: var(--cream);
             text-decoration: none;
@@ -838,11 +853,11 @@
         .social-icon:hover {
             border-color: var(--green);
             color: var(--green);
-            box-shadow: 0 0 15px rgba(170, 248, 84, 0.3);
+            box-shadow: 0 0 15px rgba(196, 255, 54, 0.3);
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(170, 248, 84, 0.1);
+            border-top: 1px solid rgba(196, 255, 54, 0.1);
             padding-top: 2rem;
             text-align: center;
             color: var(--muted);
@@ -865,10 +880,10 @@
 
         @keyframes glow-pulse {
             0%, 100% {
-                filter: drop-shadow(0 0 8px rgba(170, 248, 84, 0.4));
+                filter: drop-shadow(0 0 8px rgba(196, 255, 54, 0.4));
             }
             50% {
-                filter: drop-shadow(0 0 16px rgba(170, 248, 84, 0.7));
+                filter: drop-shadow(0 0 16px rgba(196, 255, 54, 0.7));
             }
         }
 
@@ -884,11 +899,11 @@
         @keyframes shimmer {
             0%, 100% {
                 stroke-width: 3;
-                filter: drop-shadow(0 0 8px rgba(170, 248, 84, 0.6));
+                filter: drop-shadow(0 0 8px rgba(196, 255, 54, 0.6));
             }
             50% {
                 stroke-width: 3.5;
-                filter: drop-shadow(0 0 20px rgba(170, 248, 84, 0.9));
+                filter: drop-shadow(0 0 20px rgba(196, 255, 54, 0.9));
             }
         }
 
@@ -951,14 +966,7 @@
     <header>
         <a href="#" class="header-logo">
             <div class="logo-mark">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Top half ellipse -->
-                    <ellipse cx="50" cy="35" rx="28" ry="22" fill="none" stroke="#58AE45" stroke-width="3" stroke-linecap="round"/>
-                    <!-- Bottom half ellipse -->
-                    <ellipse cx="50" cy="65" rx="28" ry="22" fill="none" stroke="#58AE45" stroke-width="3" stroke-linecap="round"/>
-                    <!-- Diagonal slash -->
-                    <line x1="28" y1="72" x2="72" y2="28" stroke="#AAF854" stroke-width="3" stroke-linecap="round" filter="drop-shadow(0 0 4px #AAF854)"/>
-                </svg>
+                <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="64" cy="64" r="33" fill="none" stroke="#C4FF36" stroke-width="9"/><line x1="33.594" y1="94.406" x2="94.406" y2="33.594" stroke="#C4FF36" stroke-width="9"/><line x1="107" y1="64" x2="122" y2="64" stroke="#C4FF36" stroke-width="9"/><line x1="64" y1="107" x2="64" y2="122" stroke="#C4FF36" stroke-width="9"/><line x1="21" y1="64" x2="6" y2="64" stroke="#C4FF36" stroke-width="9"/><line x1="64" y1="21" x2="64" y2="6" stroke="#C4FF36" stroke-width="9"/></svg>
             </div>
             <span>FRAMEZERØ</span>
         </a>
@@ -975,7 +983,18 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="zero-mark">
-                <canvas id="zeroCanvas" class="zero-canvas"></canvas>
+                <svg class="zero-canvas" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FRAMEZERØ">
+                    <g fill="none" stroke="#C4FF36" stroke-width="9" stroke-linecap="butt">
+                        <circle cx="64" cy="64" r="33"/>
+                        <line x1="33.594" y1="94.406" x2="94.406" y2="33.594"/>
+                        <g class="ticks">
+                            <line x1="107" y1="64" x2="122" y2="64"/>
+                            <line x1="64" y1="107" x2="64" y2="122"/>
+                            <line x1="21" y1="64" x2="6" y2="64"/>
+                            <line x1="64" y1="21" x2="64" y2="6"/>
+                        </g>
+                    </g>
+                </svg>
             </div>
             <div class="hero-content fade-in">
                 <h1>TRUTH EXTRACTION<br><span class="hero-highlight">+ SYSTEM BUILDING</span></h1>
@@ -1069,11 +1088,7 @@
             <div>
                 <a href="#" class="footer-logo">
                     <div class="footer-logo-mark">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <ellipse cx="50" cy="35" rx="28" ry="22" fill="none" stroke="#58AE45" stroke-width="3" stroke-linecap="round"/>
-                            <ellipse cx="50" cy="65" rx="28" ry="22" fill="none" stroke="#58AE45" stroke-width="3" stroke-linecap="round"/>
-                            <line x1="28" y1="72" x2="72" y2="28" stroke="#AAF854" stroke-width="3" stroke-linecap="round" filter="drop-shadow(0 0 4px #AAF854)"/>
-                        </svg>
+                        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="64" cy="64" r="33" fill="none" stroke="#C4FF36" stroke-width="9"/><line x1="33.594" y1="94.406" x2="94.406" y2="33.594" stroke="#C4FF36" stroke-width="9"/><line x1="107" y1="64" x2="122" y2="64" stroke="#C4FF36" stroke-width="9"/><line x1="64" y1="107" x2="64" y2="122" stroke="#C4FF36" stroke-width="9"/><line x1="21" y1="64" x2="6" y2="64" stroke="#C4FF36" stroke-width="9"/><line x1="64" y1="21" x2="64" y2="6" stroke="#C4FF36" stroke-width="9"/></svg>
                     </div>
                     <span>FRAMEZERØ CREATIVE</span>
                 </a>
@@ -1116,112 +1131,6 @@
 
     <script>
         // ===== ANIMATED ZERO MARK (CANVAS) =====
-        const canvas = document.getElementById('zeroCanvas');
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
-            const container = canvas.parentElement;
-            
-            function resizeCanvas() {
-                canvas.width = container.offsetWidth * window.devicePixelRatio;
-                canvas.height = container.offsetHeight * window.devicePixelRatio;
-                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-            }
-            
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-            
-            let animationTime = 0;
-            
-            function drawZeroMark() {
-                const w = canvas.width / window.devicePixelRatio;
-                const h = canvas.height / window.devicePixelRatio;
-                const centerX = w / 2;
-                const centerY = h / 2;
-                const scale = Math.min(w, h) / 250;
-                
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Draw semi-ellipses (the zero shape)
-                const ellipseRadiusX = 50 * scale;
-                const ellipseRadiusY = 45 * scale;
-                
-                ctx.strokeStyle = '#58AE45';
-                ctx.lineWidth = 8 * scale;
-                ctx.lineCap = 'round';
-                ctx.lineJoin = 'round';
-                
-                // Top semi-ellipse
-                ctx.beginPath();
-                ctx.ellipse(centerX, centerY - 15 * scale, ellipseRadiusX, ellipseRadiusY, 0, Math.PI, 0);
-                ctx.stroke();
-                
-                // Bottom semi-ellipse
-                ctx.beginPath();
-                ctx.ellipse(centerX, centerY + 15 * scale, ellipseRadiusX, ellipseRadiusY, 0, 0, Math.PI);
-                ctx.stroke();
-                
-                // Diagonal slash with glow
-                const slashX1 = centerX - 60 * scale;
-                const slashY1 = centerY + 70 * scale;
-                const slashX2 = centerX + 60 * scale;
-                const slashY2 = centerY - 70 * scale;
-                
-                // Glow shadow for slash
-                ctx.strokeStyle = 'rgba(170, 248, 84, 0.3)';
-                ctx.lineWidth = 16 * scale;
-                ctx.beginPath();
-                ctx.moveTo(slashX1, slashY1);
-                ctx.lineTo(slashX2, slashY2);
-                ctx.stroke();
-                
-                // Main slash with shimmer
-                const shimmerIntensity = 0.6 + Math.sin(animationTime * 0.005) * 0.4;
-                ctx.strokeStyle = `rgba(170, 248, 84, ${0.7 + shimmerIntensity * 0.3})`;
-                ctx.lineWidth = 8 * scale;
-                ctx.beginPath();
-                ctx.moveTo(slashX1, slashY1);
-                ctx.lineTo(slashX2, slashY2);
-                ctx.stroke();
-                
-                // Orbital ring around the zero
-                const orbitRadius = 100 * scale;
-                const orbitRotation = (animationTime * 0.0003) % (Math.PI * 2);
-                
-                ctx.strokeStyle = `rgba(82, 255, 216, ${0.4 + Math.sin(animationTime * 0.004) * 0.2})`;
-                ctx.lineWidth = 2 * scale;
-                ctx.beginPath();
-                ctx.ellipse(centerX, centerY, orbitRadius, orbitRadius * 0.6, 0, 0, Math.PI * 2);
-                ctx.stroke();
-                
-                // Orbiting sphere
-                const sphereX = centerX + Math.cos(orbitRotation) * orbitRadius;
-                const sphereY = centerY + Math.sin(orbitRotation) * orbitRadius * 0.6;
-                const sphereRadius = 6 * scale;
-                
-                // Sphere glow
-                ctx.fillStyle = 'rgba(244, 66, 190, 0.3)';
-                ctx.beginPath();
-                ctx.arc(sphereX, sphereY, sphereRadius * 3, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Sphere core
-                ctx.fillStyle = '#B6348F';
-                ctx.beginPath();
-                ctx.arc(sphereX, sphereY, sphereRadius, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Bright edge
-                ctx.fillStyle = '#F442BE';
-                ctx.beginPath();
-                ctx.arc(sphereX - sphereRadius * 0.3, sphereY - sphereRadius * 0.3, sphereRadius * 0.5, 0, Math.PI * 2);
-                ctx.fill();
-                
-                animationTime++;
-                requestAnimationFrame(drawZeroMark);
-            }
-            
-            drawZeroMark();
-        }
         
         // ===== SCROLL REVEAL ANIMATIONS =====
         const observerOptions = {
