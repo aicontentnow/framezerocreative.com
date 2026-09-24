@@ -1,0 +1,31 @@
+Wire the assessment to the live Cal.com booking link
+
+The event type exists and is configured: cal.com/ownertwin/25-minutes-no-pitch,
+25 minutes, Cal Video, four booking questions.
+
+  What kind of business is it?        required, short text
+  How many people, including you?     required, select
+  Your Owner Gap result               optional, select, identifier "result"
+  What is eating your week right now? required, long text
+
+Cal prefills a booking question from a URL param named after its identifier,
+so READY now links to ?result=READY and their score lands in the form already
+filled. Verified on the live booking page: the dropdown reads READY without
+them touching it.
+
+Cal's stock "Additional notes" field was turned off. It duplicated the fourth
+question and asked the same thing twice with a vaguer label.
+
+Only READY gets the calendar. WRITTEN DOWN gets an email link carrying its
+score in the subject. ONE OF A KIND and OUT OF THE WAY get no CTA at all,
+which is the filter working rather than a gap.
+
+EMAIL moved to hello@ownertwin.com now that the mailbox exists.
+
+Buttondown URLs deliberately untouched. That account is still named FRAMEZERO
+and changing the site first would break the form for everyone.
+
+All four result paths re-verified headless. No JS errors.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_013UwomcgzRAP8g2gLSZDj2y

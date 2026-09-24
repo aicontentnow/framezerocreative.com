@@ -263,8 +263,8 @@ footer a:hover{color:var(--green)}
    swaps its email button for a booking button. Leave it empty and the
    page degrades to email, which is the correct behaviour at low volume.
 ------------------------------------------------------------------ */
-var CAL_URL   = "";
-var EMAIL     = "hello@framezerocreative.com";
+var CAL_URL   = "https://cal.com/ownertwin/25-minutes-no-pitch";
+var EMAIL     = "hello@ownertwin.com";
 
 /* Axis A: how much is locked in the owner's head. Axis B: how repeatable.
    Every option scores 0 to 3. Five questions per axis, so 15 is the max
@@ -376,7 +376,13 @@ function finish(){
   var z=document.getElementById('ctaZone');
   if(r.cta){
     var href, label=r.cta.label;
-    if(key==='ready' && CAL_URL){ href=CAL_URL; }
+    if(key==='ready' && CAL_URL){
+      /* Cal.com prefills a booking question from a URL param named after its
+         identifier. The "Your Owner Gap result" question's identifier is
+         "result", so their score lands in the form and they never retype it. */
+      href = CAL_URL + (CAL_URL.indexOf('?') < 0 ? '?' : '&')
+           + 'result=' + encodeURIComponent(r.n);
+    }
     else {
       var sub='The Owner Gap: '+r.n+' ('+a+'/15 locked, '+b+'/15 repeatable)';
       href='mailto:'+EMAIL+'?subject='+encodeURIComponent(sub);
