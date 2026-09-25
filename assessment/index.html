@@ -1,407 +1,428 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Owner Gap | OwnerTwin</title>
-<meta name="description" content="Ten questions. Two axes. Find out whether your business is actually patterned enough to get out of your head, and whether you are the bottleneck it needs freeing from.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The ØWNER TWIN Assessment</title>
+<meta name="description" content="Eleven questions. See what your twin would learn from you, what you could ask it in week one, and where we would start.">
 <link rel="canonical" href="https://ownertwin.com/assessment/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The Owner Gap">
-<meta property="og:description" content="Ten questions. Two axes. Most readiness quizzes flatter you. This one tells you if we are the wrong fit.">
+<meta property="og:title" content="What would your twin know?">
+<meta property="og:description" content="Eleven questions. See what your twin would learn from you, what you could ask it in week one, and where we would start.">
 <meta property="og:url" content="https://ownertwin.com/assessment/">
 <meta property="og:image" content="https://ownertwin.com/brand/ot-share-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Owner Gap">
-<meta name="twitter:description" content="Ten questions. Two axes. Most readiness quizzes flatter you. This one tells you if we are the wrong fit.">
+<meta name="twitter:title" content="What would your twin know?">
+<meta name="twitter:description" content="Eleven questions. See what your twin would learn from you, what you could ask it in week one, and where we would start.">
 <meta name="twitter:image" content="https://ownertwin.com/brand/ot-share-1200x630.png">
+<meta name="theme-color" content="#050508">
 <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
 <link rel="icon" href="/brand/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+html,body{margin:0}
+
 :root{
-  --void:#050508; --surface:#0a0d12; --card:rgba(10,13,18,.7);
-  --green:#C4FF36; --green-dim:#6B8F1E;
-  --cream:#f0ece4; --warm:#d4c5a9; --muted:#8a8a8a; --dim:#555;
-  --line:rgba(196,255,54,.14);
+  color-scheme:dark;
+  --void:#050508; --surface:#0C0E12; --raise:#13161B; --line:rgba(232,228,220,.10); --line2:rgba(232,228,220,.18);
+  --acc:#C4FF36; --acc-dim:rgba(196,255,54,.14); --bone:#E8E4DC; --muted:#9199A1; --ink:#050508;
+  --display:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Space Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{
-  background:var(--void); color:var(--cream);
-  font-family:'Outfit','Avenir Next',Avenir,'Segoe UI',Helvetica,Arial,sans-serif;
-  font-weight:300; line-height:1.6;
-  min-height:100vh; padding:0 16px 80px;
-  overflow-x:hidden;
-}
-.mono{font-family:'Space Mono',monospace}
-.wrap{max-width:660px;margin:0 auto}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--void)}
+body{color:var(--bone);font-family:var(--display);font-weight:200;font-size:17px;line-height:1.5;padding-inline:16px;min-height:100%;-webkit-font-smoothing:antialiased}
+.wrap{max-width:560px;margin:0 auto;padding-block:0 48px}
+b,strong,h1,h2,h3{font-weight:600}
+h1,h2{text-wrap:balance;margin:0}
+.mono{font-family:var(--mono);font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:10px}
 
-/* header */
-header{padding:34px 0 0;display:flex;align-items:center;gap:12px}
-header svg{width:30px;height:30px;flex:none}
-header .wm{font-size:.86rem;font-weight:600;letter-spacing:.18em;color:var(--cream);text-decoration:none}
-header .wm span{color:var(--green)}
-header .wm em{font-style:normal;font-weight:200}
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--void);border-bottom:1px solid var(--line);padding-block:14px 12px;margin-inline:-16px;padding-inline:16px}
+.top-in{max-width:560px;margin:0 auto;display:grid;gap:12px}
+.brandrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wm{font-size:17px;letter-spacing:.14em;white-space:nowrap}
+.wm .o{color:var(--acc);font-weight:600}.wm .a{font-weight:600}.wm .b{font-weight:200}
+.count{font-size:12px}
+.rail{display:grid;grid-template-columns:repeat(11,1fr);gap:4px}
+.seg{height:4px;border-radius:2px;background:var(--line2);position:relative;overflow:hidden}
+.seg::after{content:"";position:absolute;inset:0;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.seg.done::after{transform:scaleX(1)}
+.seg.now{background:rgba(196,255,54,.35)}
 
-/* progress */
-.bar{height:2px;background:rgba(255,255,255,.08);margin:30px 0 0;border-radius:2px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--green);transition:width .35s cubic-bezier(.4,0,.2,1)}
-.count{margin-top:10px;font-size:.66rem;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
+/* live twin map */
+.map{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;align-items:end}
+.mcol{display:grid;gap:5px;justify-items:center}
+.mbar{width:100%;height:30px;border-radius:5px;background:var(--surface);border:1px solid var(--line);position:relative;overflow:hidden}
+.mbar i{position:absolute;left:0;right:0;bottom:0;height:0;background:var(--acc);transition:height .6s var(--ease)}
+.mbar.pulse{animation:pulse .7s var(--ease)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(196,255,54,.55)}100%{box-shadow:0 0 0 10px rgba(196,255,54,0)}}
+.mcol span{font-size:9px;letter-spacing:.08em;text-align:center;line-height:1.2}
 
 /* intro */
-.intro{padding:52px 0 0}
-h1{
-  font-size:clamp(2rem,7.5vw,3.1rem); font-weight:600; line-height:1.04;
-  letter-spacing:-.02em; margin-bottom:1.1rem;
-}
-h1 .hl{color:var(--green)}
-.lede{font-size:clamp(1rem,2.6vw,1.15rem);color:var(--warm);margin-bottom:1.5rem}
-.intro p+p{margin-top:.9rem}
-.intro .fine{color:var(--muted);font-size:.93rem}
-.axes{
-  border:1px solid var(--line); border-radius:12px; background:var(--card);
-  padding:22px 24px; margin:28px 0 30px;
-}
-.axes dt{font-size:.66rem;letter-spacing:.16em;color:var(--green);text-transform:uppercase;font-family:'Space Mono',monospace}
-.axes dd{margin:5px 0 16px;color:var(--warm);font-size:.97rem}
-.axes dd:last-child{margin-bottom:0}
+.intro{display:grid;gap:22px;padding-top:28px}
+.ret{width:64px;height:64px}
+.ret circle,.ret line{stroke:var(--acc);stroke-width:7;fill:none}
+.ret .d{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s var(--ease) forwards}
+.ret .s{animation-delay:.35s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.intro h1{font-size:clamp(38px,11vw,56px);line-height:1.02;letter-spacing:-.01em}
+.intro h1 em{font-style:normal;color:var(--acc)}
+.lede{color:var(--bone);font-size:18px;max-width:34ch}
+.lede b{color:var(--acc)}
+.promise{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.promise li{display:flex;gap:12px;align-items:flex-start;font-size:16px}
+.tick{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:var(--acc);display:grid;place-items:center;margin-top:1px}
+.tick svg{width:12px;height:12px}
+.tick path{stroke:var(--ink);stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cta{appearance:none;border:0;background:var(--acc);color:var(--ink);font-weight:600;font-size:18px;border-radius:999px;min-height:56px;padding:0 28px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;width:100%;transition:transform .15s var(--ease),box-shadow .3s}
+.cta:active{transform:scale(.98)}
+.cta:hover{box-shadow:0 0 0 6px var(--acc-dim)}
+.ghost{appearance:none;background:transparent;border:1px solid var(--line2);color:var(--bone);border-radius:999px;min-height:48px;padding:0 20px;cursor:pointer;font-weight:600;font-size:15px}
+.fine{font-size:14px;color:var(--muted)}
 
 /* question */
-.q{padding:46px 0 0;display:none}
-.q.on{display:block;animation:in .4s ease both}
-@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.qtag{font-size:.64rem;letter-spacing:.17em;color:var(--green-dim);text-transform:uppercase;margin-bottom:14px;font-family:'Space Mono',monospace}
-.q h2{font-size:clamp(1.3rem,4.4vw,1.85rem);font-weight:600;line-height:1.22;letter-spacing:-.01em;margin-bottom:26px}
-.opts{display:flex;flex-direction:column;gap:9px}
-.opt{
-  width:100%; text-align:left; cursor:pointer;
-  background:var(--card); color:var(--cream);
-  border:1.5px solid var(--line); border-radius:10px;
-  padding:15px 18px; font:inherit; font-size:1rem;
-  transition:border-color .2s,background .2s,transform .12s;
-  display:flex; align-items:flex-start; gap:13px;
-}
-.opt:hover,.opt:focus-visible{border-color:rgba(196,255,54,.45);background:rgba(10,13,18,.92);outline:none}
-.opt:active{transform:scale(.995)}
-.opt b{
-  flex:none;width:19px;height:19px;margin-top:3px;border-radius:50%;
-  border:1.5px solid var(--dim);transition:border-color .2s,background .2s;
-}
-.opt:hover b{border-color:var(--green)}
-.back{
-  margin-top:24px;background:none;border:none;cursor:pointer;font:inherit;
-  color:var(--dim);font-size:.85rem;letter-spacing:.02em;padding:6px 0;
-}
-.back:hover{color:var(--warm)}
+.q{display:grid;gap:18px;padding-top:18px}
+.q h2{font-size:clamp(26px,7.4vw,34px);line-height:1.15}
+.q .hint{color:var(--muted);font-size:15px;margin-top:-8px}
+.opts{display:grid;gap:10px}
+.opt{appearance:none;text-align:left;width:100%;min-height:60px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;gap:14px;align-items:center;cursor:pointer;font-size:17px;font-weight:200;transition:border-color .2s,background .2s,transform .15s var(--ease)}
+.opt:active{transform:scale(.985)}
+.opt:hover{border-color:var(--line2)}
+.box{flex:0 0 26px;width:26px;height:26px;border-radius:8px;border:1.5px solid var(--line2);display:grid;place-items:center;transition:background .2s,border-color .2s}
+.multi .box{border-radius:7px}
+.single .box{border-radius:50%}
+.box svg{width:14px;height:14px;opacity:0;transform:scale(.4);transition:opacity .2s,transform .3s var(--ease)}
+.box path{stroke:var(--ink);stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.opt.on{border-color:var(--acc);background:#11150A}
+.opt.on .box{background:var(--acc);border-color:var(--acc)}
+.opt.on .box svg{opacity:1;transform:scale(1)}
+.opt.on span{font-weight:600}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center}
+.nav .cta{width:auto;flex:1}
+.enter{animation:enter .45s var(--ease) both}
+@keyframes enter{from{opacity:.001;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* result */
-.res{padding:46px 0 0;display:none}
-.res.on{display:block;animation:in .5s ease both}
-.verdict{font-size:.66rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;font-family:'Space Mono',monospace;margin-bottom:12px}
-.res h2{font-size:clamp(2rem,7.5vw,3rem);font-weight:600;line-height:1.02;letter-spacing:-.02em;color:var(--green);margin-bottom:1.1rem}
-.res .body p{color:var(--warm);font-size:1.03rem}
-.res .body p+p{margin-top:.95rem}
+.res{display:grid;gap:26px;padding-top:22px}
+.level{display:grid;gap:8px}
+.level .big{font-size:clamp(56px,19vw,92px);line-height:.9;color:var(--acc);letter-spacing:.02em;font-weight:600}
+.level .sub{font-size:19px}
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.rung{border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:grid;gap:4px}
+.rung .mono{font-size:10px}
+.rung .fill{height:6px;border-radius:3px;background:var(--line2);overflow:hidden}
+.rung .fill i{display:block;height:100%;width:0;background:var(--acc);transition:width .7s var(--ease)}
+.rung.me{border-color:var(--acc)}
+.rung.me .mono{color:var(--acc)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:14px}
+.layer{display:grid;gap:6px}
+.lrow{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.lrow b{font-size:16px}
+.lrow .mono{font-size:10px;text-align:right}
+.cells{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.cell{height:10px;border-radius:3px;background:var(--raise);position:relative;overflow:hidden}
+.cell i{position:absolute;inset:0;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.cell.f i{transform:scaleX(1)}
+.asks{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.asks li{display:flex;gap:12px;align-items:flex-start;opacity:.001;transform:translateY(8px);transition:opacity .4s,transform .4s var(--ease)}
+.asks li.in{opacity:1;transform:none}
+.asks q{quotes:none;font-size:16px}
+.learn{display:flex;gap:10px;align-items:center;font-size:15px;color:var(--muted)}
+.learn .dot{width:8px;height:8px;border-radius:50%;background:var(--acc);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.kv{display:grid;gap:4px}
+.kv .v{font-size:22px;font-weight:600}
+.gate{display:grid;gap:18px;padding-top:18px}
+.gate h2{font-size:clamp(26px,7.4vw,34px);line-height:1.15}
+.field{display:grid;gap:6px}
+.field label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field input{appearance:none;width:100%;min-height:56px;background:var(--surface);border:1px solid var(--line2);border-radius:14px;padding:0 16px;color:var(--bone);font:200 18px var(--display)}
+.field input:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 4px var(--acc-dim)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.err{color:var(--acc);font-size:15px;min-height:1em;margin:0}
+.cta[disabled]{opacity:.6;pointer-events:none}
+.note{border-left:3px solid var(--acc);padding:4px 0 4px 14px;font-size:16px}
+.contact{display:grid;gap:12px}
+.email{font-family:var(--mono);font-size:14px;color:var(--bone);user-select:all;word-break:break-all}
+.row2{display:flex;gap:10px;flex-wrap:wrap}
 
-/* matrix */
-.mx{margin:32px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
-.mx-head{padding:14px 18px 0;font-size:.63rem;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;font-family:'Space Mono',monospace}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);margin:12px 0 0}
-.cell{background:var(--void);padding:17px 16px;min-height:88px}
-.cell .nm{font-size:.83rem;font-weight:600;letter-spacing:.04em;color:var(--dim);margin-bottom:5px}
-.cell .ds{font-size:.78rem;color:var(--dim);line-height:1.45}
-.cell.you{background:rgba(196,255,54,.09)}
-.cell.you .nm{color:var(--green)}
-.cell.you .ds{color:var(--warm)}
-.cell.you .nm::after{content:' \00b7 you';font-weight:400;letter-spacing:.1em;font-size:.68rem;opacity:.75}
-.mx-ax{display:flex;justify-content:space-between;padding:11px 16px;font-size:.62rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;font-family:'Space Mono',monospace}
-.mx-up{padding:9px 16px 0;font-size:.62rem;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;font-family:'Space Mono',monospace}
-
-/* scores */
-.sc{display:flex;gap:11px;margin:0 0 30px;flex-wrap:wrap}
-.sc div{flex:1 1 150px;border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--card)}
-.sc .k{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;font-family:'Space Mono',monospace}
-.sc .v{font-size:1.7rem;font-weight:600;color:var(--green);line-height:1.2;margin-top:3px;font-family:'Space Mono',monospace}
-.sc .v small{font-size:.8rem;font-weight:400;color:var(--dim)}
-
-/* cta */
-.cta{border:1.5px solid rgba(196,255,54,.3);border-radius:12px;padding:26px 24px;background:var(--card);margin:6px 0 26px}
-.cta h3{font-size:1.2rem;font-weight:600;margin-bottom:.6rem;color:var(--cream)}
-.cta p{color:var(--warm);font-size:.97rem;margin-bottom:1.25rem}
-.btn{
-  display:inline-block;background:var(--green);color:#0b1004;
-  font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;
-  padding:14px 26px;border-radius:8px;text-decoration:none;font-weight:700;border:none;cursor:pointer;
-  transition:transform .15s,box-shadow .2s;
+@media (min-width:720px){
+  body{font-size:18px}
+  .wrap{padding-block:0 72px}
+  .mbar{height:38px}
+  .mcol span{font-size:10px}
 }
-.btn:hover{transform:translateY(-1px);box-shadow:0 0 26px rgba(196,255,54,.3)}
-.btn.ghost{background:none;color:var(--green);border:1.5px solid rgba(196,255,54,.35)}
-.btn.ghost:hover{box-shadow:none;border-color:var(--green)}
-.secondary{border-top:1px solid rgba(255,255,255,.07);padding-top:24px;margin-top:4px}
-.secondary h4{font-size:.98rem;font-weight:600;margin-bottom:.4rem}
-.secondary p{color:var(--muted);font-size:.9rem;margin-bottom:1rem}
-form{display:flex;gap:9px;flex-wrap:wrap}
-input[type=email]{
-  flex:1 1 200px;background:rgba(255,255,255,.04);border:1.5px solid var(--line);
-  border-radius:8px;padding:13px 15px;color:var(--cream);font:inherit;font-size:.95rem;
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .ret .d{stroke-dashoffset:0}
+  .asks li{opacity:1;transform:none}
 }
-input[type=email]:focus{outline:none;border-color:rgba(196,255,54,.45)}
-input[type=email]::placeholder{color:var(--dim)}
-.again{margin-top:26px}
-.again button{background:none;border:none;color:var(--dim);font:inherit;font-size:.85rem;cursor:pointer;padding:6px 0}
-.again button:hover{color:var(--warm)}
-
-footer{
-  margin-top:64px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);
-  font-size:.8rem;color:var(--dim);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap
-}
-footer a{color:var(--muted);text-decoration:none}
-footer a:hover{color:var(--green)}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
-/* The 2x2 is the instrument. It stays a 2x2 on every real phone. */
-@media (max-width:470px){
-  .cell{padding:13px 11px;min-height:96px}
-  .cell .nm{font-size:.74rem;letter-spacing:.02em}
-  .cell .ds{font-size:.7rem;line-height:1.4}
-  .cell.you .nm::after{display:block;margin-top:1px}
-  .mx-ax,.mx-up,.mx-head{font-size:.57rem;padding-left:11px;padding-right:11px}
-}
-@media (max-width:330px){ .grid{grid-template-columns:1fr} .cell{min-height:auto} }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<header class="top" id="top">
+  <div class="top-in">
+    <div class="brandrow">
+      <div class="wm" aria-label="ØWNER TWIN"><span class="o">Ø</span><span class="a">WNER </span><span class="b">TWIN</span></div>
+      <div class="mono count num" id="count">11 questions</div>
+    </div>
+    <div class="rail" id="rail" aria-hidden="true"></div>
+    <div class="map" id="map" aria-label="What your twin would learn so far"></div>
+  </div>
+</header>
 
-  <header>
-    <svg viewBox="0 0 128 128" role="img" aria-label="OwnerTwin">
-      <g fill="none" stroke="#C4FF36" stroke-width="9" stroke-linecap="butt">
-        <circle cx="64" cy="64" r="33"/>
-        <line x1="33.594" y1="94.406" x2="94.406" y2="33.594"/>
-        <line x1="107" y1="64" x2="122" y2="64"/><line x1="64" y1="107" x2="64" y2="122"/>
-        <line x1="21" y1="64" x2="6" y2="64"/><line x1="64" y1="21" x2="64" y2="6"/>
-      </g>
-    </svg>
-    <a class="wm" href="/"><span>&Oslash;</span>WNER<em>&nbsp;TWIN</em></a>
-  </header>
-
-  <div class="bar" id="bar" hidden><i id="fill"></i></div>
-  <div class="count mono" id="count" hidden></div>
-
-  <!-- INTRO -->
+<main class="wrap">
   <section class="intro" id="intro">
-    <h1>THE OWNER GAP<br><span class="hl">TEN QUESTIONS</span></h1>
-    <p class="lede">Most readiness quizzes are built to tell you that you are ready. This one is built to tell you the truth, including when the truth is that we are the wrong people to call.</p>
-    <p class="fine">There are two things that decide whether a business can get out of its owner's head. Nearly every assessment measures one of them and calls it a score.</p>
-
-    <dl class="axes">
-      <dt>Axis one &middot; How much is locked in your head</dt>
-      <dd>If the answer is not much, you have already done the hard part and you do not need us.</dd>
-      <dt>Axis two &middot; How repeatable the work is</dt>
-      <dd>If the answer is not very, no system can hold it, and anything that claims to will just hand you a worse version of your own judgment.</dd>
-    </dl>
-
-    <p class="fine">You need both to be high for any of this to work. Cross them and there are four places to land, and only one of them is us.</p>
-    <p style="margin-top:26px"><button class="btn" id="start">Start</button></p>
-    <p class="fine" style="margin-top:14px">No email required to see your result.</p>
+    <svg class="ret" viewBox="-60 -60 120 120" aria-hidden="true">
+      <circle class="d" cx="0" cy="0" r="30" pathLength="1"/>
+      <line class="d s" x1="-37" y1="37" x2="37" y2="-37" pathLength="1"/>
+      <line x1="0" y1="-40" x2="0" y2="-56"/><line x1="40" y1="0" x2="56" y2="0"/>
+      <line x1="0" y1="40" x2="0" y2="56"/><line x1="-40" y1="0" x2="-56" y2="0"/>
+    </svg>
+    <div class="mono">The ØWNER TWIN assessment</div>
+    <h1>What would your twin <em>know?</em></h1>
+    <p class="lede">A twin learns your business from you, then you can ask it anything. Eleven questions show <b>how much it would learn</b> and where we would start.</p>
+    <ul class="promise">
+      <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 5 9 10 3"/></svg></span>The six things your twin would learn from you, mapped as you go</li>
+      <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 5 9 10 3"/></svg></span>The questions you could ask it in the first week</li>
+      <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 5 9 10 3"/></svg></span>Your depth level. Everyone gets one, and a real next step</li>
+    </ul>
+    <button class="cta" id="start" type="button">Start <span aria-hidden="true">&rarr;</span></button>
+    <p class="fine">Free. Your result appears as soon as you finish.</p>
   </section>
 
-  <!-- QUESTIONS injected here -->
-  <div id="qs"></div>
-
-  <!-- RESULT -->
-  <section class="res" id="res">
-    <div class="verdict mono">Your position</div>
-    <h2 id="rname"></h2>
-    <div class="body" id="rbody"></div>
-
-    <div class="sc" id="scores"></div>
-
-    <div class="mx">
-      <div class="mx-head">Where you landed</div>
-      <div class="mx-up">&uarr; more locked in your head</div>
-      <div class="grid">
-        <div class="cell" data-k="custom"><div class="nm">ONE OF A KIND</div><div class="ds">All you, nothing repeats</div></div>
-        <div class="cell" data-k="ready"><div class="nm">READY</div><div class="ds">All you, and it repeats</div></div>
-        <div class="cell" data-k="out"><div class="nm">OUT OF THE WAY</div><div class="ds">Not you, nothing repeats</div></div>
-        <div class="cell" data-k="written"><div class="nm">WRITTEN DOWN</div><div class="ds">Not you, and it repeats</div></div>
+  <section class="q" id="quiz" hidden></section>
+  <section class="gate" id="gate" hidden>
+    <div class="mono">Your twin map is ready</div>
+    <h2>Where should we send your result?</h2>
+    <p class="hint" style="color:var(--muted);margin:0">We email you a copy and keep your answers so your first call starts where you left off. Nothing else. No list.</p>
+    <form id="gform" novalidate>
+      <div style="display:grid;gap:14px">
+        <div class="field"><label for="g-name">Your name</label><input id="g-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="g-email">Email</label><input id="g-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="field"><label for="g-biz">Business name (optional)</label><input id="g-biz" name="business" autocomplete="organization"></div>
+        <div class="hp" aria-hidden="true"><label for="g-web">Website</label><input id="g-web" name="website" tabindex="-1" autocomplete="off"></div>
+        <p class="err" id="gerr" role="alert"></p>
+        <button class="cta" id="gsubmit" type="submit">Show my result <span aria-hidden="true">&rarr;</span></button>
       </div>
-      <div class="mx-ax"><span>&larr; less repeatable</span><span>more repeatable &rarr;</span></div>
-    </div>
-
-    <div id="ctaZone"></div>
-
-    <div class="secondary">
-      <h4>The writing, either way</h4>
-      <p>What we learn building these, and what we get wrong. Sent when there is something worth sending.</p>
-      <form action="https://buttondown.com/api/emails/embed-subscribe/ownertwin" method="post" target="popupwindow"
-            onsubmit="window.open('https://buttondown.com/ownertwin','popupwindow')">
-        <label class="sr" for="bd">Email address</label>
-        <input id="bd" type="email" name="email" placeholder="you@yourbusiness.com" autocomplete="email" required>
-        <input type="hidden" name="embed" value="1">
-        <button type="submit" class="btn ghost">Subscribe</button>
-      </form>
-    </div>
-
-    <div class="again"><button id="redo">Start over</button></div>
+    </form>
   </section>
-
-  <footer>
-    <span>Built by Bodhi Valentine</span>
-    <span><a href="/">ownertwin.com</a></span>
-  </footer>
-</div>
+  <section class="res" id="result" hidden></section>
+</main>
 
 <script>
-/* ------------------------------------------------------------------
-   CONFIG. Drop the Cal.com booking URL in here and the READY result
-   swaps its email button for a booking button. Leave it empty and the
-   page degrades to email, which is the correct behaviour at low volume.
------------------------------------------------------------------- */
-var CAL_URL   = "https://cal.com/ownertwin/25-minutes-no-pitch";
-var EMAIL     = "hello@ownertwin.com";
+(function(){
+var CAL_URL="https://cal.com/ownertwin/25-minutes-no-pitch";
+var SUBMIT_URL="https://cbgpjxsharkvkspgpgbx.supabase.co/functions/v1/submit-assessment";
+var EMAIL="hello@ownertwin.com";
 
-/* Axis A: how much is locked in the owner's head. Axis B: how repeatable.
-   Every option scores 0 to 3. Five questions per axis, so 15 is the max
-   on each. High is 8 or more, which is the first value above the midpoint. */
-var Q = [
- {ax:"A",t:"If nobody could reach you for a week, what happens to the business?",
-  o:[["It runs. Somebody else covers.",0],["Most of it runs. A few things wait.",1],["Customers notice. Things start slipping.",2],["It stops.",3]]},
- {ax:"B",t:"How different is your fiftieth job from your first?",
-  o:[["Every one is genuinely different.",0],["Same trade, but the work changes a lot.",1],["Same shape, different details.",2],["Close to identical.",3]]},
- {ax:"A",t:"Who else can price a job the way you would?",
-  o:[["Two or more people, and I trust their numbers.",0],["One person, close enough.",1],["Nobody. They ask me.",2],["Nobody, and when they try I redo it.",3]]},
- {ax:"B",t:"When a customer asks you something, how often have you answered that exact question before?",
-  o:[["Rarely. They are always new.",0],["Sometimes.",1],["Often.",2],["Almost always. I could recite it.",3]]},
- {ax:"A",t:"A question comes in that your team cannot answer. Where does it go?",
-  o:[["To a document or a process we wrote.",0],["To whoever has done it before.",1],["To me.",2],["To me, and I will answer the same one again next month.",3]]},
- {ax:"B",t:"Do you explain the same thing to different people more than once?",
-  o:[["Not really.",0],["Occasionally.",1],["Often.",2],["Constantly. It is most of what I do.",3]]},
- {ax:"A",t:"How much of what you know about your customers is written down anywhere?",
-  o:[["Most of it, and people actually use it.",0],["Some of it, in a few places.",1],["Barely any.",2],["It is in my head, my phone, and a notebook somewhere.",3]]},
- {ax:"B",t:"Is there a right way to do the main thing your business does?",
-  o:[["No. It is a judgment call every time.",0],["It depends heavily on the situation.",1],["Mostly a right way, with exceptions.",2],["Yes, and I know exactly what it is.",3]]},
- {ax:"A",t:"The last time you tried to hand something off, how did it go?",
-  o:[["It stuck. I do not touch it any more.",0],["It mostly stuck.",1],["It came back to me.",2],["I have not really tried.",3]]},
- {ax:"B",t:"Could you write down how you decide what to charge?",
-  o:[["No. I read the situation.",0],["Partly.",1],["Roughly, yes.",2],["Yes. It is close to a formula.",3]]}
+var LAYERS=[
+ {k:"price",n:"How you price",s:"PRICE"},
+ {k:"cust",n:"Your customers",s:"CUST"},
+ {k:"ops",n:"How the work gets done",s:"WORK"},
+ {k:"people",n:"Who does what",s:"TEAM"},
+ {k:"money",n:"Your numbers",s:"MONEY"},
+ {k:"grow",n:"Where you want to go",s:"NEXT"}
+];
+var WORDS=["Mostly written down","Some of it","A lot of it","Only in your head"];
+
+var Q=[
+ {id:"size",t:"How many people work in the business, including you?",o:[["Just me",0],["2 to 5",1],["6 to 12",2],["13 to 20",3]]},
+ {id:"price",layer:"price",t:"When someone asks for a price, who works it out?",o:[["Me. Nobody else could.",3],["Me, with a sheet I half trust.",2],["Someone else, and they check with me.",2],["Someone else. It is written down.",0]]},
+ {id:"cust",layer:"cust",t:"How much of what you know about your customers lives only in your head?",o:[["Almost all of it.",3],["Most of it.",2],["Some. The rest is in a system.",1],["Very little. It is all tracked.",0]]},
+ {id:"ops",layer:"ops",t:"If nobody could reach you for a week, what happens?",o:[["It stops.",3],["Customers notice. Things slip.",2],["A few things wait for me.",1],["It runs.",0]]},
+ {id:"people",layer:"people",t:"When your team gets stuck, where does the question go?",solo:"When you get stuck, who do you ask?",
+   o:[["To me, every time.",3],["To me, most of the time.",2],["To whoever did it last.",1],["To a process we wrote.",0]],
+   so:[["Nobody. I work it out alone.",3],["A friend in the trade.",2],["Google and YouTube.",2],["An advisor or bookkeeper.",1]]},
+ {id:"money",layer:"money",t:"How well do you know your numbers week to week?",o:[["I feel them. I could not show you.",3],["Roughly. My bookkeeper knows more.",2],["I check them every month.",1],["I track them closely.",0]]},
+ {id:"gaps",layer:"grow",multi:true,t:"What have you been putting off because nobody could show you how?",hint:"Pick any that apply.",
+   o:[["Marketing","mkt"],["Pricing strategy","prc"],["Hiring and training","hire"],["Learning new tools","tools"],["Cash flow and planning","cash"],["Following up with customers","fu"]]},
+ {id:"sound",layer:"grow",t:"When you have a hard call to make, who do you think it through with?",o:[["Nobody. It is all me.",3],["My partner or a friend.",2],["A mentor or advisor.",1],["My team.",1]]},
+ {id:"deep",t:"A twin learns the real version of your business. Would you sit down and tell it how you actually run things?",hint:"Including the parts you have never told anyone. You answer our questions by voice memo and upload them to an encrypted shared folder. Nobody on our team listens to them, and a mutual NDA covers anything that comes up while we build it.",
+   o:[["Yes. All of it.",3],["Most of it.",2],["The basics. Some things stay with me.",1],["I would rather it figured things out on its own.",0]]},
+ {id:"budget",t:"What would you put toward building your twin?",hint:"This sizes the first build. Nothing is quoted until we have talked.",
+   o:[["Under $2,500",0],["$2,500 to $7,500",1],["$7,500 to $20,000",2],["Over $20,000",3],["Not sure yet. Help me size it.",4]]},
+ {id:"monthly",t:"Your twin keeps learning after it is built. What would you put toward that each month?",hint:"We keep it current as the business changes.",
+   o:[["Under $250",0],["$250 to $750",1],["$750 to $2,000",2],["Over $2,000",3],["Not sure yet.",4]]}
 ];
 
-var R = {
- ready:{n:"READY",
-  b:["Your work repeats, and it all runs through you. Those two facts together are the entire reason this job exists. The work is patterned enough that a system can hold it, and it is locked in your head tightly enough that nothing else currently can.",
-     "This is who we build for. Not a maybe."],
-  cta:{h:"The next step is a conversation",
-       p:"Twenty five minutes. No pitch, no deck. We ask what is eating your week, and we tell you straight whether a twin is the right answer for it or whether something smaller would do more.",
-       label:"Book the 25 minutes"}},
- custom:{n:"ONE OF A KIND",
-  b:["Everything runs through you, and the work genuinely changes every time. We are not going to pretend a twin fixes that. When judgment is the product, a system that leans on your last answer gives you a worse version of yourself and calls it leverage.",
-     "What helps here is narrower than what we build. Find the one part that does repeat: the intake, the quoting, the follow up, the thing you explain to every new customer. Get that one out of your head and leave the judgment where it belongs, with you.",
-     "We would rather tell you that than sell you the big version."],
-  cta:null},
- written:{n:"WRITTEN DOWN",
-  b:["The work repeats and you have already got a good amount of it out of your head. That is further than most owners get, and it means the expensive part of this is behind you.",
-     "The job here is smaller than what we usually build, which is worth knowing before either of us spends an hour on it. Still worth a conversation, just a short one."],
-  cta:{h:"Worth a short conversation",
-       p:"Tell us what is still stuck and we will tell you whether it is a job at all. It might not be, and that is a fine outcome.",
-       label:"Write to us"}},
- out:{n:"OUT OF THE WAY",
-  b:["You are not the bottleneck, and the work does not repeat enough for a system to hold it. On both axes you are the wrong customer for us, and we would rather say that plainly than book a meeting and find out together.",
-     "If the business changes shape, or if you just want to watch what we build, the writing is free and there is nothing attached to it."],
-  cta:null}
+var ASK={
+ mkt:"I have never done marketing. Walk me through my first push, step by step.",
+ prc:"Is this job priced the way I would price it? What am I leaving on the table?",
+ hire:"Write the job post the way I would say it, and what a new hire needs to know first.",
+ tools:"Which tool should I learn first for this, and show me how to set it up.",
+ cash:"What does next month look like if the big job slips?",
+ fu:"Who have I not called back this week, and what should I say?",
+ price:"Price this job the way I would.",
+ cust:"What does this customer usually want, and how do I usually handle them?",
+ ops:"Someone is asking how we do this. What would I tell them?",
+ sound:"Here is the decision. Think it through with me the way I would."
 };
 
-var i = 0, ans = [];
-var intro=document.getElementById('intro'), qs=document.getElementById('qs'),
-    res=document.getElementById('res'), bar=document.getElementById('bar'),
-    fill=document.getElementById('fill'), count=document.getElementById('count');
+var LEVELS=[
+ {n:"STARTER",sub:"A focused twin.",d:"It learns the part of the business that runs through you most, and you start asking it things in the first week. It grows from there."},
+ {n:"CORE",sub:"A working twin.",d:"It learns how you price, how you talk to customers and how the work gets done. It answers the way you would."},
+ {n:"DEEP",sub:"A full twin.",d:"It holds the whole business, including your numbers and the calls only you make. It becomes the one you think things through with."}
+];
 
-Q.forEach(function(q,n){
-  var s=document.createElement('section'); s.className='q'; s.id='q'+n;
-  var h=''; q.o.forEach(function(o,k){
-    h+='<button class="opt" data-v="'+o[1]+'"><b></b><span>'+o[0]+'</span></button>';
-  });
-  s.innerHTML='<div class="qtag mono">Question '+(n+1)+' of '+Q.length+'</div>'
-            + '<h2>'+q.t+'</h2><div class="opts">'+h+'</div>'
-            + (n>0?'<button class="back">Back</button>':'');
-  qs.appendChild(s);
-  s.querySelectorAll('.opt').forEach(function(b){
-    b.addEventListener('click',function(){ ans[n]=+b.dataset.v; go(n+1); });
-  });
-  var bk=s.querySelector('.back');
-  if(bk) bk.addEventListener('click',function(){ go(n-1); });
-});
+var ans={}, i=0;
+var $=function(id){return document.getElementById(id)};
+var gate=$("gate"), rail=$("rail"), map=$("map"), quiz=$("quiz"), result=$("result"), intro=$("intro"), count=$("count");
+var CHECK='<svg viewBox="0 0 14 14"><path d="M2.5 7.5 5.8 10.5 11.5 3.5"/></svg>';
 
-function show(el){
-  [intro,res].concat([].slice.call(document.querySelectorAll('.q')))
-    .forEach(function(e){ e.classList.remove('on'); });
-  if(el===intro){ intro.style.display='block'; } else { intro.style.display='none'; }
-  if(el!==intro) el.classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'});
+Q.forEach(function(){var s=document.createElement("div");s.className="seg";rail.appendChild(s)});
+LAYERS.forEach(function(l){var c=document.createElement("div");c.className="mcol";
+  c.innerHTML='<div class="mbar" id="mb-'+l.k+'"><i></i></div><span class="mono">'+l.s+'</span>';map.appendChild(c)});
+
+function solo(){return ans.size===0}
+function layerScore(k){
+  if(k==="grow"){var picks=(ans.gaps||[]).length;return Math.max(ans.sound||0,Math.min(3,picks))}
+  return ans[k]==null?0:ans[k];
+}
+function paintMap(pulseKey){
+  LAYERS.forEach(function(l){var b=$("mb-"+l.k);b.firstChild.style.height=(layerScore(l.k)/3*100)+"%";
+    if(l.k===pulseKey){b.classList.remove("pulse");void b.offsetWidth;b.classList.add("pulse")}});
+}
+function paintRail(){
+  [].forEach.call(rail.children,function(s,n){s.className="seg"+(ans[Q[n].id]!=null&&n!==i||n<i?" done":"")+(n===i&&quiz.hidden===false?" now":"")});
+}
+
+function render(){
+  var q=Q[i], isSolo=solo()&&q.solo, text=isSolo?q.solo:q.t, opts=isSolo?q.so:q.o;
+  count.textContent=(i+1)+" / "+Q.length;
+  var h='<div class="mono num">Question '+(i+1)+' of '+Q.length+'</div><h2>'+text+'</h2>'+(q.hint?'<p class="hint">'+q.hint+'</p>':'');
+  h+='<div class="opts '+(q.multi?"multi":"single")+'" role="'+(q.multi?"group":"radiogroup")+'">';
+  opts.forEach(function(o,n){
+    var on=q.multi?((ans[q.id]||[]).indexOf(o[1])>-1):(ans[q.id]===o[1]&&ans[q.id+"_n"]===n);
+    h+='<button type="button" class="opt'+(on?" on":"")+'" id="o-'+q.id+'-'+n+'" data-n="'+n+'" role="'+(q.multi?"checkbox":"radio")+'" aria-checked="'+on+'"><span class="box">'+CHECK+'</span><span>'+o[0]+'</span></button>';
+  });
+  h+='</div><div class="nav">'+(i>0?'<button type="button" class="ghost" id="back">Back</button>':'<span></span>')+
+     (q.multi?'<button type="button" class="cta" id="next">'+((ans[q.id]||[]).length?"Next":"None of these")+' <span aria-hidden="true">&rarr;</span></button>':'')+'</div>';
+  quiz.innerHTML=h; quiz.classList.remove("enter"); void quiz.offsetWidth; quiz.classList.add("enter");
+  paintRail();
+  quiz.querySelectorAll(".opt").forEach(function(b){b.addEventListener("click",function(){pick(q,opts,+b.dataset.n,b)})});
+  if($("back"))$("back").onclick=function(){go(i-1)};
+  if($("next"))$("next").onclick=function(){go(i+1)};
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+var lock=false;
+function pick(q,opts,n,btn){
+  if(q.multi){
+    var arr=ans[q.id]||[], v=opts[n][1], k=arr.indexOf(v);
+    if(k>-1)arr.splice(k,1);else arr.push(v); ans[q.id]=arr;
+    btn.classList.toggle("on",k===-1); btn.setAttribute("aria-checked",k===-1);
+    $("next").firstChild.nodeValue=(arr.length?"Next":"None of these")+" ";
+    paintMap(q.layer); return;
+  }
+  if(lock)return; lock=true;
+  ans[q.id]=opts[n][1]; ans[q.id+"_n"]=n;
+  quiz.querySelectorAll(".opt").forEach(function(b){var on=b===btn;b.classList.toggle("on",on);b.setAttribute("aria-checked",on)});
+  paintMap(q.layer);
+  setTimeout(function(){lock=false;go(i+1)},420);
 }
 
 function go(n){
-  if(n<0) n=0;
-  if(n>=Q.length){ return finish(); }
-  i=n;
-  bar.hidden=false; count.hidden=false;
-  fill.style.width=((n)/Q.length*100)+'%';
-  count.textContent=(n)+' of '+Q.length+' answered';
-  show(document.getElementById('q'+n));
+  if(n<0)n=0;
+  if(n>=Q.length){showGate();return}
+  i=n; render();
 }
 
-function finish(){
-  var a=0,b=0;
-  Q.forEach(function(q,n){ if(q.ax==='A') a+=ans[n]||0; else b+=ans[n]||0; });
-  var hiA=a>=8, hiB=b>=8;
-  var key = hiA ? (hiB?'ready':'custom') : (hiB?'written':'out');
-  var r=R[key];
+function scoreValue(){
+  var L=LAYERS.reduce(function(s,l){return s+layerScore(l.k)},0)/18;
+  var S=(ans.size||0)/3, G=Math.min((ans.gaps||[]).length,4)/4;
+  return Math.round((.6*L+.2*S+.2*G)*100)/100;
+}
+function levelIndex(){var t=scoreValue();return t<.42?0:(t<.68?1:2)}
 
-  document.getElementById('rname').textContent=r.n;
-  document.getElementById('rbody').innerHTML=r.b.map(function(p){return '<p>'+p+'</p>';}).join('');
+function asks(){
+  var out=[];(ans.gaps||[]).forEach(function(g){out.push(ASK[g])});
+  if((ans.price||0)>=2)out.push(ASK.price);
+  if((ans.cust||0)>=2)out.push(ASK.cust);
+  if((ans.sound||0)>=2)out.push(ASK.sound);
+  if((ans.ops||0)>=2)out.push(ASK.ops);
+  if(!out.length)out.push(ASK.ops,ASK.cust);
+  return out.slice(0,4);
+}
 
-  document.getElementById('scores').innerHTML =
-    '<div><div class="k mono">Locked in your head</div><div class="v mono">'+a+'<small> / 15</small></div></div>'+
-    '<div><div class="k mono">Repeatable work</div><div class="v mono">'+b+'<small> / 15</small></div></div>';
-
-  document.querySelectorAll('.cell').forEach(function(c){
-    c.classList.toggle('you', c.dataset.k===key);
+function showGate(){
+  i=Q.length; paintRail(); [].forEach.call(rail.children,function(s){s.className="seg done"});
+  count.textContent="Almost there"; quiz.hidden=true; gate.hidden=false;
+  gate.classList.remove("enter"); void gate.offsetWidth; gate.classList.add("enter");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function answerLog(){
+  return Q.map(function(q){
+    var text=(solo()&&q.solo)?q.solo:q.t, opts=(solo()&&q.solo)?q.so:q.o, a;
+    if(q.multi){a=(ans[q.id]||[]).map(function(v){var o=opts.filter(function(x){return x[1]===v})[0];return o?o[0]:v}).join(", ")||"None"}
+    else{var n=ans[q.id+"_n"];a=n==null?"":opts[n][0]}
+    return {q:text,a:a};
   });
+}
+$("gform").addEventListener("submit",function(e){
+  e.preventDefault();
+  var name=$("g-name").value.trim(), email=$("g-email").value.trim(), err=$("gerr");
+  if(!name){err.textContent="Add your name so we know who we are talking to.";$("g-name").focus();return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){err.textContent="That email does not look right. Check it and try again.";$("g-email").focus();return}
+  err.textContent=""; var btn=$("gsubmit"); btn.disabled=true; btn.firstChild.nodeValue="Building your result ";
+  var li=levelIndex(), layers={};
+  LAYERS.forEach(function(l){layers[l.n]=WORDS[layerScore(l.k)]});
+  var payload={name:name,email:email,business:$("g-biz").value.trim(),website:$("g-web").value,
+    level:LEVELS[li].n,score:scoreValue(),layers:layers,answers:answerLog(),asks:asks(),
+    depth:ans.deep==null?null:ans.deep,
+    budget_build:Q[9].o[ans.budget_n==null?4:ans.budget_n][0],budget_monthly:Q[10].o[ans.monthly_n==null?4:ans.monthly_n][0],
+    source_url:location.href};
+  var done=false, go2=function(meta){if(done)return;done=true;finish({name:name,email:email,id:meta&&meta.id})};
+  setTimeout(function(){go2(null)},8000);
+  try{
+    fetch(SUBMIT_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+      .then(function(r){return r.json().catch(function(){return {}})})
+      .then(function(j){go2(j&&j.ok?j:null)})
+      .catch(function(){go2(null)});
+  }catch(x){go2(null)}
+});
 
-  var z=document.getElementById('ctaZone');
-  if(r.cta){
-    var href, label=r.cta.label;
-    if(key==='ready' && CAL_URL){
-      /* Cal.com prefills a booking question from a URL param named after its
-         identifier. The "Your Owner Gap result" question's identifier is
-         "result", so their score lands in the form and they never retype it. */
-      href = CAL_URL + (CAL_URL.indexOf('?') < 0 ? '?' : '&')
-           + 'result=' + encodeURIComponent(r.n);
-    }
-    else {
-      var sub='The Owner Gap: '+r.n+' ('+a+'/15 locked, '+b+'/15 repeatable)';
-      href='mailto:'+EMAIL+'?subject='+encodeURIComponent(sub);
-      if(key==='ready') label='Write to us';
-    }
-    z.innerHTML='<div class="cta"><h3>'+r.cta.h+'</h3><p>'+r.cta.p+'</p>'
-              + '<a class="btn" href="'+href+'">'+label+'</a></div>';
-  } else { z.innerHTML=''; }
-
-  fill.style.width='100%';
-  count.textContent='Complete';
-  show(res);
+function finish(meta){
+  meta=meta||{};
+  var li=levelIndex(), lv=LEVELS[li], deep=ans.deep==null?3:ans.deep, b=Q[9].o[ans.budget_n==null?4:ans.budget_n][0], mo=Q[10].o[ans.monthly_n==null?4:ans.monthly_n][0];
+  count.textContent="Complete"; i=Q.length; paintRail();
+  [].forEach.call(rail.children,function(s){s.className="seg done"});
+  var h='<div class="level"><div class="mono">Your twin</div><div class="big">'+lv.n+'</div><div class="sub"><b>'+lv.sub+'</b> '+lv.d+'</div></div>';
+  h+='<div class="ladder" aria-hidden="true">'+LEVELS.map(function(x,n){return '<div class="rung'+(n===li?" me":"")+'"><span class="mono">'+x.n+'</span><span class="fill"><i data-w="'+(n<=li?100:0)+'"></i></span></div>'}).join("")+'</div>';
+  h+='<div class="card"><div class="mono">What it would learn from you</div>'+LAYERS.map(function(l){var v=layerScore(l.k);
+      return '<div class="layer"><div class="lrow"><b>'+l.n+'</b><span class="mono">'+WORDS[v]+'</span></div><div class="cells" data-v="'+v+'"><span class="cell"><i></i></span><span class="cell"><i></i></span><span class="cell"><i></i></span></div></div>'}).join("")+'</div>';
+  h+='<div class="card"><div class="mono">Ask it in the first week</div><ul class="asks">'+asks().map(function(a){return '<li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 5 9 10 3"/></svg></span><q>'+a+'</q></li>'}).join("")+'</ul><div class="learn"><span class="dot"></span>It gets smarter every conversation.</div></div>';
+  if(deep===0)h+='<p class="note">A twin is only as good as what you tell it. On these answers yours would stay shallow, and we would rather say that now. If that changes, we are here.</p>';
+  else if(deep===1)h+='<p class="note">Keeping some things to yourself is normal. Your twin will be as deep as what you share, and you decide that.</p>';
+  h+='<div class="card"><div class="kv"><span class="mono">To build it</span><span class="v">'+b+'</span></div><div class="kv"><span class="mono">Each month to keep it learning</span><span class="v">'+mo+'</span></div><p class="fine" style="margin:0">We use this to size the first build with you. Nothing is quoted until we have talked.</p></div>';
+  var href=CAL_URL+"?result="+encodeURIComponent(lv.n)+(meta.id?"&assessment="+encodeURIComponent(meta.id):"")+(meta.name?"&name="+encodeURIComponent(meta.name):"")+(meta.email?"&email="+encodeURIComponent(meta.email):"");
+  h+='<div class="contact"><h2 style="font-size:26px">Twenty five minutes. No pitch.</h2><p style="margin:0">We look at your result together and work out where your twin starts.</p><a class="cta" href="'+href+'" target="_blank" rel="noopener">Book the 25 minutes <span aria-hidden="true">&rarr;</span></a><p class="fine" style="margin:0">Or write to us: <span class="email">'+EMAIL+'</span></p><div class="row2"><button type="button" class="ghost" id="redo">Start over</button></div></div>';
+  intro.hidden=true; quiz.hidden=true; gate.hidden=true; result.hidden=false; result.innerHTML=h;
+  result.classList.remove("enter"); void result.offsetWidth; result.classList.add("enter");
+  window.scrollTo({top:0,behavior:"smooth"});
+  setTimeout(function(){
+    result.querySelectorAll(".rung i").forEach(function(x){x.style.width=x.dataset.w+"%"});
+    result.querySelectorAll(".cells").forEach(function(c,r){var v=+c.dataset.v;
+      [].forEach.call(c.children,function(cell,k){if(k<v)setTimeout(function(){cell.classList.add("f")},r*120+k*110)})});
+    result.querySelectorAll(".asks li").forEach(function(x,k){setTimeout(function(){x.classList.add("in")},900+k*220)});
+  },250);
+  $("redo").onclick=function(){ans={};i=0;result.hidden=true;gate.hidden=true;$("gform").reset();var gb=$("gsubmit");gb.disabled=false;gb.firstChild.nodeValue="Show my result ";intro.hidden=false;count.textContent="11 questions";paintMap();[].forEach.call(rail.children,function(s){s.className="seg"});window.scrollTo({top:0})};
 }
 
-document.getElementById('start').addEventListener('click',function(){ go(0); });
-document.getElementById('redo').addEventListener('click',function(){
-  ans=[]; bar.hidden=true; count.hidden=true; fill.style.width='0';
-  show(intro);
-});
+$("start").onclick=function(){intro.hidden=true;quiz.hidden=false;go(0)};
+paintMap();
+})();
 </script>
 </body>
 </html>
